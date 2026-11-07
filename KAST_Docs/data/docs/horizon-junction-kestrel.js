@@ -2,6 +2,8 @@
 KAST.registerDoc({
   id: 'horizon-junction-kestrel',
   order: 1,
+  group: 'station',
+  stationMission: 'junction',
   kind: 'Flight plan',
   status: 'Ready to fly',
   navTitle: 'Junction flight plan',

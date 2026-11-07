@@ -87,7 +87,8 @@
 
   /* ---------- nav ---------- */
   function buildNav() {
-    const links = KAST.docs.map(d => el('a', { href: '#/doc/' + d.id, 'data-key': 'doc/' + d.id, text: d.navTitle || d.title }));
+    const links = [el('a', { href: '#/station', 'data-key': 'station', text: 'Building Horizon Station' })];
+    KAST.docs.filter(d => d.group !== 'station').forEach(d => links.push(el('a', { href: '#/doc/' + d.id, 'data-key': 'doc/' + d.id, text: d.navTitle || d.title })));
     links.push(el('a', { href: '#/logs', 'data-key': 'logs', text: 'Flight logs' }));
     links.push(el('a', { href: '#/telemetry', 'data-key': 'telemetry', text: 'Booster telemetry' }));
     links.push(el('a', { href: '#/gallery', 'data-key': 'gallery', text: 'Gallery' }));
@@ -95,7 +96,8 @@
   }
   function markNav() {
     const h = location.hash.replace(/^#\/?/, '').split('/');
-    const key = h[0] === 'log' ? 'logs' : h[0] === 'telemetry' ? 'telemetry' : h[0] === 'gallery' ? 'gallery' : h.slice(0, 2).join('/');
+    const inStation = h[0] === 'station' || (h[0] === 'doc' && KAST.docs.some(d => d.id === h[1] && d.group === 'station'));
+    const key = inStation ? 'station' : h[0] === 'log' ? 'logs' : h[0] === 'telemetry' ? 'telemetry' : h[0] === 'gallery' ? 'gallery' : h.slice(0, 2).join('/');
     navlinks.querySelectorAll('a').forEach(a => {
       if (a.dataset.key === key) a.setAttribute('aria-current', 'page');
       else a.removeAttribute('aria-current');
@@ -171,7 +173,7 @@
       ]));
     const facts = doc.facts && el('dl', { class: 'facts' }, doc.facts.map(f => el('div', { class: 'fact' }, [el('dt', { text: f[0] }), el('dd', { html: fmt(f[1]) })])));
 
-    const nodes = [hero, facts];
+    const nodes = [hero, doc.group === 'station' ? stationTabs(doc.stationMission) : null, facts].filter(Boolean);
     if (doc.goals) nodes.push(el('section', { class: 'section' }, [
       el('div', { class: 'section-head' }, el('div', null, [el('h2', { text: doc.goalsTitle || 'Mission objectives' }), doc.overview && P(doc.overview)])),
       el('ol', { class: 'goals' }, doc.goals.map(g => el('li', { html: fmt(g) })))
@@ -533,11 +535,76 @@
     setPage([hero, el('section', { class: 'section' }, items.length ? grid : el('div', { class: 'empty', text: 'No screenshots yet.' }))], 'Gallery');
   }
 
+
+  /* ---------- Building Horizon Station ---------- */
+  // Missions come from the roadmap's launch steps; a mission gets a flight plan when a doc
+  // with group: 'station' and stationMission: '<step id>' is listed in data/manifest.js.
+  function stationMissions() {
+    const road = KAST.docs.find(d => d.id === 'horizon-roadmap');
+    const list = [];
+    if (road) road.lanes.forEach(l => l.steps.forEach(s => {
+      const m = /^Launch (\d+)/.exec(s.time || '');
+      if (m) list.push({ ...s, n: +m[1], plan: KAST.docs.find(d => d.group === 'station' && d.stationMission === s.id) });
+    }));
+    return list.sort((a, b) => a.n - b.n);
+  }
+  const missionHref = m => m.plan ? '#/doc/' + m.plan.id : '#/station/' + m.id;
+  function stationTabs(activeId) {
+    const tabs = [el('a', { href: '#/station', class: 'subtab', 'aria-current': activeId ? null : 'page' }, el('span', { class: 'subtab-name', text: 'Overview' }))];
+    stationMissions().forEach(m => tabs.push(el('a', { href: missionHref(m), class: 'subtab' + (m.plan ? '' : ' empty-plan'), 'aria-current': m.id === activeId ? 'page' : null }, [
+      el('span', { class: 'subtab-n', text: pad2(m.n) }),
+      el('span', { class: 'subtab-name', text: m.plan ? (m.plan.navTitle || m.title) : m.title })
+    ])));
+    return el('nav', { class: 'subtabs', 'aria-label': 'Horizon Station missions' }, el('div', { class: 'subtabs-inner' }, tabs));
+  }
+  function renderStation(missionId) {
+    current = null;
+    const missions = stationMissions();
+    if (missionId) {
+      const m = missions.find(x => x.id === missionId);
+      if (!m) return renderMissing('No Horizon Station mission with that id.');
+      if (m.plan) { location.replace('#/doc/' + m.plan.id); return; }
+      const hero = el('section', { class: 'hero short', style: "background-image:url('assets/photo-glide-ksc.jpg')" },
+        el('div', { class: 'hero-inner' }, [
+          el('p', { class: 'kicker', text: 'Horizon Station, launch ' + m.n + ' of ' + missions.length }),
+          el('h1', { text: 'Horizon ' + m.title }),
+          P(m.lead, 'lead')
+        ]));
+      const facts = m.values && el('dl', { class: 'facts' }, m.values.map(f => el('div', { class: 'fact' }, [el('dt', { text: f[0] }), el('dd', { html: fmt(f[1]) })])));
+      const body = el('section', { class: 'section' }, el('div', { class: 'placeholder' }, [
+        el('h2', { text: 'Flight plan not written yet' }),
+        P('This tab is reserved for the ' + m.title + ' mission. Its step-by-step flight plan, checklist and debrief will appear here once the mission is planned.'),
+        el('div', { class: 'btn-row' }, el('a', { class: 'btn', href: '#/doc/horizon-roadmap/' + m.id, text: 'See it on the roadmap' }))
+      ]));
+      return setPage([hero, stationTabs(m.id), facts, body].filter(Boolean), 'Horizon ' + m.title);
+    }
+    const ready = missions.filter(m => m.plan).length;
+    const hero = el('section', { class: 'hero short', style: "background-image:url('assets/hero-sunset.jpg')" },
+      el('div', { class: 'hero-inner' }, [
+        el('p', { class: 'kicker', text: 'Horizon Station' }),
+        el('h1', { text: 'Building Horizon Station' }),
+        P('Every launch that turns KASP Station Node 1 into Horizon Station gets its own tab here: the flight plan, the checklist and how it went.', 'lead')
+      ]));
+    const rows = missions.map(m => el('a', { class: 'mission-row' + (m.plan ? '' : ' empty-plan'), href: missionHref(m) }, [
+      el('span', { class: 'mission-n', text: pad2(m.n) }),
+      el('span', { class: 'mission-main' }, [el('strong', { text: 'Horizon ' + m.title }), el('span', { class: 'mission-role', text: m.lead })]),
+      el('span', { class: 'badge' + (m.plan ? ' gold' : ''), text: m.plan ? (m.plan.status || 'Flight plan ready') : 'Not planned yet' })
+    ]));
+    setPage([hero, stationTabs(null), el('section', { class: 'section' }, [
+      el('div', { class: 'section-head' }, el('div', null, [
+        el('h2', { text: 'Missions' }),
+        P(ready + ' of ' + missions.length + ' flight plans written. Launch order follows the roadmap.')
+      ]), el('a', { class: 'btn', href: '#/doc/horizon-roadmap', text: 'Horizon roadmap' })),
+      el('div', { class: 'missions' }, rows)
+    ])], 'Building Horizon Station');
+  }
+
   /* ---------- router ---------- */
   function route() {
     closeDrawer(false);
     const h = location.hash.replace(/^#\/?/, '').split('/');
     if (h[0] === 'doc' && h[1]) renderDoc(h[1], h[2]);
+    else if (h[0] === 'station') renderStation(h[1]);
     else if (h[0] === 'logs') renderLogs();
     else if (h[0] === 'log' && h[1]) renderLog(h[1]);
     else if (h[0] === 'telemetry') renderTelemetry(h[1]);
