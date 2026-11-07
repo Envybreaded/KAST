@@ -1,0 +1,9 @@
+{
+  "sim1": {
+    "note": "Old tuning (900 fuel reserve, aimed at the pad). Boostback stopped at the reserve about 5 km short; the entry burn and glide added 7.5 km more. Soft, upright splashdown about 12.4 km east of the pad."
+  },
+  "sim2": {
+    "note": "New tuning (650 reserve, aim 6 km past the pad). Boostback reached its aim point with 1,184 fuel left, no entry burn was needed, and the glide pulled the predicted impact from 5.5 km to 3.3 km past the pad. KSP crashed during the landing burn at about 1.1 km, so there is no touchdown.",
+    "result": "KSP crashed in the landing burn at 1.1 km; heading for about 3.3 km west of the pad"
+  }
+}

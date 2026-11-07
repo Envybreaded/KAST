@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>KAST | Horizon Space Center</title>
+  <link rel="icon" href="assets/kast-emblem-256.png">
+  <link rel="stylesheet" href="css/kast.css">
+</head>
+<body>
+  <header class="nav" id="nav">
+    <a class="brand" href="#/" aria-label="KAST home">
+      <img src="assets/kast-emblem-256.png" alt="">
+      <span>KAST</span>
+    </a>
+    <nav class="nav-links" id="navlinks" aria-label="Documents"></nav>
+    <span class="nav-right">Horizon Space Center</span>
+  </header>
+
+  <main id="app" tabindex="-1"></main>
+
+  <div class="scrim" id="scrim" hidden></div>
+  <aside class="drawer" id="drawer" aria-hidden="true" aria-labelledby="drawer-title" role="dialog">
+    <button class="drawer-close" id="drawer-close" aria-label="Close">&times;</button>
+    <div class="drawer-body" id="drawer-body"></div>
+  </aside>
+
+  <script src="js/charts.js"></script>
+  <script src="js/app.js"></script>
+  <script src="data/manifest.js"></script>
+</body>
+</html>

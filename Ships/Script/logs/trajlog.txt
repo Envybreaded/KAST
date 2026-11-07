@@ -1,0 +1,102 @@
+KAST LV-5 Kestrel booster trajectory log
+Columns: mission time, phase, altitude, vertical speed, ground speed, distance to pad,
+predicted impact relative to the pad (+ past/west, - short/east), liquid fuel left, throttle.
+Written by kestrel_booster.ks from now on (Ships/Script/logs/trajlog.txt); runs 1-2 rebuilt from kestrel_booster.csv.
+
+==== Booster Sim run 1 (rebuilt), LF 1941 at start. Old tuning: 900 LF reserve, aimed at the pad. ====
+---- FLIP at T+56s ----
+T+56s  flip       alt 38967 m  vs 100 m/s  gs 337 m/s  to pad 25.92 km  impact       -  LF 1941  thr 0%
+T+61s  flip       alt 39378 m  vs 58 m/s  gs 336 m/s  to pad 27.56 km  impact       -  LF 1941  thr 0%
+T+66s  flip       alt 39561 m  vs 10 m/s  gs 342 m/s  to pad 29.21 km  impact       -  LF 1931  thr 12%
+T+72s  flip       alt 39496 m  vs -36 m/s  gs 345 m/s  to pad 30.89 km  impact       -  LF 1918  thr 12%
+T+77s  flip       alt 39196 m  vs -80 m/s  gs 342 m/s  to pad 32.57 km  impact       -  LF 1906  thr 12%
+---- BOOSTBACK at T+82s ----
+T+82s  boostback  alt 38676 m  vs -120 m/s  gs 332 m/s  to pad 34.22 km  impact       -  LF 1893  thr 100%
+T+87s  boostback  alt 37980 m  vs -149 m/s  gs 246 m/s  to pad 35.63 km  impact       -  LF 1789  thr 100%
+T+92s  boostback  alt 37122 m  vs -181 m/s  gs 157 m/s  to pad 36.61 km  impact       -  LF 1684  thr 100%
+T+98s  boostback  alt 36101 m  vs -212 m/s  gs 65 m/s  to pad 37.15 km  impact       -  LF 1580  thr 100%
+T+103s  boostback  alt 34916 m  vs -244 m/s  gs 33 m/s  to pad 37.23 km  impact       -  LF 1475  thr 100%
+T+108s  boostback  alt 33569 m  vs -275 m/s  gs 130 m/s  to pad 36.84 km  impact       -  LF 1371  thr 100%
+T+113s  boostback  alt 32064 m  vs -304 m/s  gs 231 m/s  to pad 35.95 km  impact       -  LF 1266  thr 100%
+T+118s  boostback  alt 30414 m  vs -330 m/s  gs 335 m/s  to pad 34.55 km  impact       -  LF 1161  thr 100%
+T+124s  boostback  alt 28647 m  vs -348 m/s  gs 440 m/s  to pad 32.63 km  impact       -  LF 1057  thr 100%
+T+129s  boostback  alt 26807 m  vs -357 m/s  gs 545 m/s  to pad 30.18 km  impact       -  LF 952  thr 100%
+---- ENTRY at T+132s ----
+T+132s  entry      alt 25703 m  vs -350 m/s  gs 605 m/s  to pad 28.46 km  impact       -  LF 890  thr 100%
+T+137s  entry      alt 23982 m  vs -326 m/s  gs 530 m/s  to pad 25.51 km  impact       -  LF 785  thr 100%
+T+142s  entry      alt 22413 m  vs -280 m/s  gs 402 m/s  to pad 23.17 km  impact       -  LF 681  thr 100%
+---- GLIDE at T+143s ----
+T+143s  glide      alt 22269 m  vs -277 m/s  gs 390 m/s  to pad 22.97 km  impact       -  LF 672  thr 0%
+T+148s  glide      alt 20765 m  vs -300 m/s  gs 359 m/s  to pad 21.09 km  impact       -  LF 672  thr 0%
+T+153s  glide      alt 19163 m  vs -314 m/s  gs 322 m/s  to pad 19.37 km  impact       -  LF 672  thr 0%
+T+158s  glide      alt 17522 m  vs -315 m/s  gs 277 m/s  to pad 17.86 km  impact       -  LF 672  thr 0%
+T+164s  glide      alt 15923 m  vs -296 m/s  gs 222 m/s  to pad 16.60 km  impact       -  LF 672  thr 0%
+T+169s  glide      alt 14496 m  vs -254 m/s  gs 160 m/s  to pad 15.63 km  impact       -  LF 672  thr 0%
+T+174s  glide      alt 13202 m  vs -247 m/s  gs 127 m/s  to pad 14.91 km  impact       -  LF 672  thr 0%
+T+179s  glide      alt 11914 m  vs -248 m/s  gs 104 m/s  to pad 14.33 km  impact       -  LF 672  thr 0%
+T+184s  glide      alt 10628 m  vs -246 m/s  gs 84 m/s  to pad 13.85 km  impact       -  LF 672  thr 0%
+T+190s  glide      alt 9369 m  vs -238 m/s  gs 66 m/s  to pad 13.46 km  impact       -  LF 672  thr 0%
+T+195s  glide      alt 8158 m  vs -228 m/s  gs 50 m/s  to pad 13.17 km  impact       -  LF 672  thr 0%
+T+200s  glide      alt 7001 m  vs -217 m/s  gs 38 m/s  to pad 12.94 km  impact       -  LF 672  thr 0%
+T+205s  glide      alt 5896 m  vs -208 m/s  gs 28 m/s  to pad 12.77 km  impact       -  LF 672  thr 0%
+T+210s  glide      alt 4839 m  vs -199 m/s  gs 21 m/s  to pad 12.65 km  impact       -  LF 672  thr 0%
+T+216s  glide      alt 3828 m  vs -190 m/s  gs 15 m/s  to pad 12.56 km  impact       -  LF 672  thr 0%
+T+221s  glide      alt 2860 m  vs -182 m/s  gs 10 m/s  to pad 12.49 km  impact       -  LF 672  thr 0%
+T+226s  glide      alt 1934 m  vs -174 m/s  gs 7 m/s  to pad 12.45 km  impact       -  LF 672  thr 0%
+---- LANDING at T+229s ----
+T+229s  landing    alt 1397 m  vs -169 m/s  gs 5 m/s  to pad 12.43 km  impact       -  LF 671  thr 100%
+T+234s  landing    alt 712 m  vs -107 m/s  gs 2 m/s  to pad 12.41 km  impact       -  LF 603  thr 84%
+T+240s  landing    alt 292 m  vs -53 m/s  gs 5 m/s  to pad 12.39 km  impact       -  LF 522  thr 81%
+T+245s  landing    alt 117 m  vs -19 m/s  gs 3 m/s  to pad 12.37 km  impact       -  LF 450  thr 58%
+T+250s  landing    alt 55 m  vs -6 m/s  gs 0 m/s  to pad 12.36 km  impact       -  LF 395  thr 47%
+T+255s  landing    alt 34 m  vs -2 m/s  gs 1 m/s  to pad 12.36 km  impact       -  LF 348  thr 43%
+==== DOWN (splashdown) about 12.4 km east of the pad, 317 LF left ====
+
+==== Booster Sim run 2 (rebuilt), LF 1941 at start. Aim 6 km past the pad, 650 LF reserve. KSP crashed in the landing burn at 1.1 km. ====
+---- FLIP at T+22s ----
+T+22s  flip       alt 30923 m  vs 380 m/s  gs 351 m/s  to pad 15.04 km  impact -61.55 km  LF 1941  thr 0%
+T+28s  flip       alt 32779 m  vs 334 m/s  gs 346 m/s  to pad 16.77 km  impact -61.26 km  LF 1941  thr 0%
+T+33s  flip       alt 34412 m  vs 296 m/s  gs 342 m/s  to pad 18.46 km  impact -61.32 km  LF 1931  thr 12%
+T+38s  flip       alt 35847 m  vs 256 m/s  gs 335 m/s  to pad 20.12 km  impact -60.86 km  LF 1918  thr 12%
+T+43s  flip       alt 37078 m  vs 217 m/s  gs 325 m/s  to pad 21.74 km  impact -60.04 km  LF 1906  thr 12%
+---- BOOSTBACK at T+47s ----
+T+47s  boostback  alt 37811 m  vs 187 m/s  gs 321 m/s  to pad 22.85 km  impact -59.67 km  LF 1902  thr 100%
+T+52s  boostback  alt 38701 m  vs 156 m/s  gs 233 m/s  to pad 24.21 km  impact -50.28 km  LF 1798  thr 100%
+T+57s  boostback  alt 39428 m  vs 124 m/s  gs 143 m/s  to pad 25.12 km  impact -40.81 km  LF 1694  thr 100%
+T+62s  boostback  alt 39991 m  vs 92 m/s  gs 50 m/s  to pad 25.59 km  impact -31.35 km  LF 1589  thr 100%
+T+68s  boostback  alt 40392 m  vs 61 m/s  gs 46 m/s  to pad 25.60 km  impact -21.85 km  LF 1485  thr 100%
+T+73s  boostback  alt 40631 m  vs 30 m/s  gs 145 m/s  to pad 25.14 km  impact -12.29 km  LF 1380  thr 100%
+T+78s  boostback  alt 40711 m  vs 0 m/s  gs 246 m/s  to pad 24.18 km  impact -2.63 km  LF 1275  thr 100%
+T+83s  boostback  alt 40632 m  vs -32 m/s  gs 332 m/s  to pad 22.74 km  impact +5.28 km  LF 1191  thr 24%
+---- COAST at T+85s ----
+T+85s  coast      alt 40548 m  vs -49 m/s  gs 338 m/s  to pad 22.09 km  impact +5.91 km  LF 1184  thr 0%
+T+91s  coast      alt 40181 m  vs -93 m/s  gs 338 m/s  to pad 20.44 km  impact +5.88 km  LF 1184  thr 0%
+T+96s  coast      alt 39585 m  vs -137 m/s  gs 337 m/s  to pad 18.80 km  impact +5.85 km  LF 1184  thr 0%
+T+101s  coast      alt 38759 m  vs -182 m/s  gs 336 m/s  to pad 17.16 km  impact +5.83 km  LF 1184  thr 0%
+T+106s  coast      alt 37700 m  vs -226 m/s  gs 335 m/s  to pad 15.52 km  impact +5.78 km  LF 1184  thr 0%
+T+111s  coast      alt 36408 m  vs -271 m/s  gs 333 m/s  to pad 13.88 km  impact +5.70 km  LF 1184  thr 0%
+T+117s  coast      alt 34881 m  vs -314 m/s  gs 331 m/s  to pad 12.25 km  impact +5.63 km  LF 1184  thr 0%
+T+122s  coast      alt 33137 m  vs -357 m/s  gs 329 m/s  to pad 10.63 km  impact +5.58 km  LF 1184  thr 0%
+---- GLIDE at T+125s ----
+T+125s  glide      alt 31985 m  vs -383 m/s  gs 327 m/s  to pad 9.66 km  impact +5.55 km  LF 1184  thr 0%
+T+130s  glide      alt 29889 m  vs -424 m/s  gs 323 m/s  to pad 8.05 km  impact +5.47 km  LF 1184  thr 0%
+T+135s  glide      alt 27583 m  vs -462 m/s  gs 317 m/s  to pad 6.46 km  impact +5.38 km  LF 1184  thr 0%
+T+140s  glide      alt 25091 m  vs -496 m/s  gs 308 m/s  to pad 4.91 km  impact +5.27 km  LF 1184  thr 0%
+T+146s  glide      alt 22446 m  vs -520 m/s  gs 294 m/s  to pad 3.40 km  impact +5.12 km  LF 1184  thr 0%
+T+151s  glide      alt 19716 m  vs -527 m/s  gs 272 m/s  to pad 1.98 km  impact +4.92 km  LF 1184  thr 0%
+T+156s  glide      alt 17010 m  vs -509 m/s  gs 239 m/s  to pad 0.69 km  impact +4.67 km  LF 1184  thr 0%
+T+161s  glide      alt 14487 m  vs -456 m/s  gs 193 m/s  to pad 0.43 km  impact +4.35 km  LF 1184  thr 0%
+T+166s  glide      alt 12330 m  vs -368 m/s  gs 138 m/s  to pad 1.26 km  impact +3.97 km  LF 1184  thr 0%
+T+172s  glide      alt 10714 m  vs -270 m/s  gs 86 m/s  to pad 1.82 km  impact +3.59 km  LF 1184  thr 0%
+T+177s  glide      alt 9356 m  vs -255 m/s  gs 66 m/s  to pad 2.20 km  impact +3.51 km  LF 1184  thr 0%
+T+182s  glide      alt 8063 m  vs -243 m/s  gs 51 m/s  to pad 2.50 km  impact +3.45 km  LF 1184  thr 0%
+T+187s  glide      alt 6830 m  vs -232 m/s  gs 39 m/s  to pad 2.73 km  impact +3.40 km  LF 1184  thr 0%
+T+192s  glide      alt 5652 m  vs -222 m/s  gs 29 m/s  to pad 2.90 km  impact +3.36 km  LF 1184  thr 0%
+T+198s  glide      alt 4526 m  vs -212 m/s  gs 22 m/s  to pad 3.04 km  impact +3.33 km  LF 1184  thr 0%
+T+203s  glide      alt 3447 m  vs -203 m/s  gs 16 m/s  to pad 3.13 km  impact +3.31 km  LF 1184  thr 0%
+---- LANDING at T+207s ----
+T+207s  landing    alt 2618 m  vs -194 m/s  gs 12 m/s  to pad 3.19 km  impact +3.30 km  LF 1182  thr 100%
+T+212s  landing    alt 1778 m  vs -142 m/s  gs 7 m/s  to pad 3.23 km  impact +3.30 km  LF 1117  thr 47%
+T+217s  landing    alt 1117 m  vs -112 m/s  gs 3 m/s  to pad 3.26 km  impact +3.30 km  LF 1062  thr 86%
+==== LOG ENDS at 1117 m: KSP crashed during the landing burn ====
+
