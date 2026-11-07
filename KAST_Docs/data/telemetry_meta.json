@@ -8,7 +8,8 @@
   },
   "sim3": {
     "note": "Guidance put the predicted landing point 20 m from the pad. An Oh Scrap oxidizer leak at the start of the glide emptied the oxidizer; the engines starved 1 s into the landing burn with 1,240 liquid fuel left, and the booster hit the ground at about 150 m/s.",
-    "result": "Lost: oxidizer leak starved the engines in the landing burn"
+    "result": "Lost: oxidizer leak starved the engines in the landing burn",
+    "miss_final": null
   },
   "sim4": {
     "note": "New Kestrel booster (Prometheus-IIG-ACS control packs). Aim 2.5 km past the pad; the glide pulled it to 0.97 km, then the landing burn made no correction. First landing: upright and intact.",

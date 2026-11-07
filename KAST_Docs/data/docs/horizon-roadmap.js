@@ -23,7 +23,7 @@
     navTitle: 'Horizon roadmap',
     title: 'Horizon Station',
     cta: 'View roadmap',
-    hero: 'assets/hero-pad.jpg',
+    hero: 'assets/photo-glide-ksc.jpg',
     subtitle: 'Ten launches turn KASP Station Node 1 into Horizon Station, an ISS-style outpost. Every joint is an MOS-DM 1.875 m docking port.',
     facts: [
       ['Start point', 'Node 1 in orbit, Valentina aboard'],

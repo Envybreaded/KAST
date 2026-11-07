@@ -95,7 +95,7 @@ strong { color: var(--ink); font-weight: 600; }
 }
 .hero { min-height: 100vh; }
 .hero.short { min-height: 62vh; }
-.panel { min-height: 78vh; border-top: 1px solid var(--line); }
+.panel { min-height: 82vh; }
 .hero::before, .panel::before {
   content: ""; position: absolute; inset: 0; z-index: -1;
   background:
@@ -116,7 +116,6 @@ strong { color: var(--ink); font-weight: 600; }
   background: url("../assets/kast-emblem-256.png") center / contain no-repeat;
   opacity: 0.22;
 }
-.hero h1 { animation: rise 0.9s cubic-bezier(.2,.7,.2,1) both; }
 @keyframes rise { from { opacity: 0; transform: translateY(18px); } }
 
 /* ---------- facts strip ---------- */
@@ -295,3 +294,50 @@ tr.sel td { color: var(--gold); }
 .nav-links { gap: 22px; }
 .nav-links a { letter-spacing: 0.12em; }
 @media (max-width: 1500px) { .nav-right { display: none; } }
+
+/* ---------- seamless pass (2026-11-07) ---------- */
+/* photos melt into the navy at both edges, so the page reads as one continuous scroll */
+.hero::before, .panel::before {
+  background:
+    linear-gradient(to bottom, var(--deep) 0%, rgba(6, 18, 37, 0) 22%),
+    linear-gradient(to top, var(--deep) 0%, rgba(6, 18, 37, 0.6) 38%, rgba(6, 18, 37, 0.08) 70%),
+    linear-gradient(to right, rgba(6, 18, 37, 0.72), rgba(6, 18, 37, 0) 58%);
+}
+.panel.right::before {
+  background:
+    linear-gradient(to bottom, var(--deep) 0%, rgba(6, 18, 37, 0) 22%),
+    linear-gradient(to top, var(--deep) 0%, rgba(6, 18, 37, 0.6) 38%, rgba(6, 18, 37, 0.08) 70%),
+    linear-gradient(to left, rgba(6, 18, 37, 0.72), rgba(6, 18, 37, 0) 58%);
+}
+.hero.home { min-height: 100vh; background-image: url('../assets/hero-sunset.jpg'); background-position: center 60%; }
+.hero.home::before {
+  background:
+    linear-gradient(to bottom, rgba(6, 18, 37, 0.55) 0%, rgba(6, 18, 37, 0) 26%),
+    linear-gradient(to top, var(--deep) 0%, rgba(6, 18, 37, 0.35) 30%, rgba(6, 18, 37, 0) 55%);
+}
+.hero.home h1 { font-size: clamp(3rem, 8vw, 7rem); max-width: 11ch; }
+.panel-title { font-size: clamp(2rem, 4.5vw, 3.6rem); }
+.panel { background-attachment: scroll; }
+/* the wide photo panels get room to breathe; the copy sits low, where the gradient is darkest */
+.panel-inner .lead { max-width: 48ch; }
+
+/* one soft entrance per page change, nothing else animates on its own */
+#app.enter { animation: pagein 0.45s ease both; }
+@keyframes pagein { from { opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { #app.enter { animation: none; } html { scroll-behavior: auto; } }
+
+/* nav: transparent over photos, frosted once you scroll */
+.nav.solid { background: rgba(6, 18, 37, 0.82); border-bottom-color: transparent; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+
+/* content pages: lighter section rules */
+.section + .section { border-top-color: rgba(34, 66, 109, 0.45); }
+
+/* home: edge-to-edge photo strip into the gallery */
+.strip-wrap { padding: 0 0 clamp(48px, 8vh, 96px); background: var(--deep); }
+.strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; }
+.strip-shot { display: block; overflow: hidden; }
+.strip-shot img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; transition: transform 0.6s ease, filter 0.3s; filter: saturate(0.92); }
+.strip-shot:hover img, .strip-shot:focus-visible img { transform: scale(1.04); filter: saturate(1.05); }
+.strip-foot { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 18px; padding: 28px clamp(20px, 6vw, 96px) 0; }
+.strip-foot .lead { margin: 0; }
+@media (max-width: 720px) { .strip { grid-template-columns: repeat(2, 1fr); } .hero.home h1 { font-size: clamp(2.6rem, 12vw, 4rem); } }

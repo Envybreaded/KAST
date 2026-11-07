@@ -78,6 +78,7 @@
   }
   function setPage(nodes, title) {
     app.replaceChildren(...nodes, footer());
+    app.classList.remove('enter'); void app.offsetWidth; app.classList.add('enter');
     document.title = title ? title + ' | KAST' : 'KAST | Horizon Space Center';
     window.scrollTo(0, 0);
     app.focus({ preventScroll: true });
@@ -104,34 +105,51 @@
 
   /* ---------- home ---------- */
   function renderHome() {
-    const main = KAST.docs.find(d => d.kind === 'Flight plan') || KAST.docs[0];
-    const hero = el('section', { class: 'hero', style: `background-image:url('${main ? main.hero : 'assets/hero-orbit.jpg'}')` },
+    current = null;
+    const panel = (o, i) => el('section', { class: 'panel' + (i % 2 ? ' right' : ''), style: `background-image:url('${o.img}')` },
+      el('div', { class: 'panel-inner' }, [
+        el('p', { class: 'kicker', text: o.kicker }),
+        el('h2', { class: 'display panel-title', text: o.title }),
+        P(o.text, 'lead'),
+        el('div', { class: 'btn-row' }, el('a', { class: 'btn', href: o.href, text: o.cta }))
+      ]));
+    const hero = el('section', { class: 'hero home' },
       el('div', { class: 'hero-inner' }, [
-        el('p', { class: 'kicker', text: 'KAST Horizon Program' }),
+        el('p', { class: 'kicker', text: 'Horizon Space Center' }),
         el('h1', { text: 'Building Horizon Station' }),
-        P('Flight plans, the station roadmap and every flight log for KAST, Horizon Space Center.', 'lead'),
+        P('Flight plans, the station roadmap, and the record of every Kestrel flight and booster landing.', 'lead'),
         el('div', { class: 'btn-row' }, [
-          main && el('a', { class: 'btn', href: '#/doc/' + main.id, text: 'Current mission' }),
-          el('a', { class: 'btn gold', href: '#/logs', text: 'Flight logs' })
+          el('a', { class: 'btn', href: '#/doc/horizon-junction-kestrel', text: 'Current mission' }),
+          el('a', { class: 'btn gold', href: '#/telemetry', text: 'Booster landings' })
         ])
       ]));
-    const panels = KAST.docs.map((d, i) => el('section', {
-      class: 'panel' + (i % 2 ? ' right' : '') + (d.hero ? '' : ' emblem'),
-      style: d.hero ? `background-image:url('${d.hero}')` : null
-    }, el('div', { class: 'panel-inner' }, [
-      el('p', { class: 'kicker', text: d.kind + (d.status ? ', ' + d.status.toLowerCase() : '') }),
-      el('h2', { class: 'display', style: 'font-size:clamp(2rem,4.5vw,3.6rem)', text: d.title }),
-      P(d.subtitle, 'lead'),
-      el('div', { class: 'btn-row' }, el('a', { class: 'btn', href: '#/doc/' + d.id, text: d.cta || 'Open' }))
-    ])));
-    const logs = el('section', { class: 'panel emblem' }, el('div', { class: 'panel-inner' }, [
-      el('p', { class: 'kicker', text: 'Flight logs' }),
-      el('h2', { class: 'display', style: 'font-size:clamp(2rem,4.5vw,3.6rem)', text: KAST.logs.length ? KAST.logs.length + (KAST.logs.length === 1 ? ' flight' : ' flights') + ' on record' : 'No flights yet' }),
-      P('Every Kestrel flight writes its own log. Each entry has the event timeline and the trajectory, charted.', 'lead'),
-      el('div', { class: 'btn-row' }, el('a', { class: 'btn', href: '#/logs', text: 'View flight logs' }))
-    ]));
-    setPage([hero, ...panels, logs]);
+    const items = [];
+    KAST.docs.forEach(d => items.push({ img: d.hero || 'assets/hero-orbit.jpg', kicker: d.kind + (d.status ? ', ' + d.status.toLowerCase() : ''), title: d.title, text: d.subtitle, href: '#/doc/' + d.id, cta: d.cta || 'Open' }));
+    const runs = (KAST.telemetry && KAST.telemetry.runs) || [];
+    const landed = runs.map(r => r.miss_final).filter(m => typeof m === 'number' && m < 2000);
+    items.push({ img: 'assets/photo-boostback.jpg', kicker: 'Booster telemetry', title: 'First stage return',
+      text: runs.length ? runs.length + ' booster runs logged' + (landed.length ? ', closest touchdown ' + Math.min(...landed) + ' m from the pad.' : '.') + ' Every flip, boostback, glide and landing burn, charted.' : 'Every flip, boostback, glide and landing burn, charted.',
+      href: '#/telemetry', cta: 'Booster telemetry' });
+    items.push({ img: 'assets/photo-ascent.jpg', kicker: 'Flight logs', title: KAST.logs.length ? KAST.logs.length + (KAST.logs.length === 1 ? ' flight' : ' flights') + ' on record' : 'No flights yet',
+      text: 'Each Kestrel flight writes its own log: the event timeline and the trajectory, charted.', href: '#/logs', cta: 'View flight logs' });
+    // hand-cropped, HUD-free versions of the best gallery shots (assets/strip/)
+    const homeShots = [
+      { thumb: 'assets/strip/strip-1-f9rcs.jpg', caption: 'Booster with Falcon 9 RCS units descending toward KSC' },
+      { thumb: 'assets/strip/strip-2-glide.jpg', caption: 'Engines-first glide over the KSC peninsula' },
+      { thumb: 'assets/strip/strip-3-first-landing.jpg', caption: 'First Kestrel landing, upright at KSC' },
+      { thumb: 'assets/strip/strip-4-interstage-vab.jpg', caption: 'Interstage, grid fins and control packs in the VAB' }
+    ];
+    const strip = homeShots.length ? el('section', { class: 'strip-wrap' }, [
+      el('div', { class: 'strip' }, homeShots.map(g => el('a', { class: 'strip-shot', href: '#/gallery', title: g.caption },
+        el('img', { src: g.thumb, alt: g.caption, loading: 'lazy' })))),
+      el('div', { class: 'strip-foot' }, [P('Screenshots from the flight deck: launches, boostbacks and landings.', 'lead'),
+        el('a', { class: 'btn', href: '#/gallery', text: 'Open the gallery' })])
+    ]) : null;
+    const nodes = [hero];
+    items.forEach((o, i) => { nodes.push(panel(o, i)); if (i === items.length - 2 && strip) nodes.push(strip); });
+    setPage(nodes);
   }
+
 
   /* ---------- document (flight plan or roadmap) ---------- */
   function renderDoc(id, stepId) {
