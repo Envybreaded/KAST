@@ -22,6 +22,8 @@ jobs:
           python-version: '3.12'
       - name: Build flight logs and booster telemetry
         run: python KAST_Docs/tools/build_logs.py
+      - name: Stamp this build into file links (browsers always load the current files)
+        run: sed -i "s/__BUILD__/${GITHUB_SHA::8}/g" KAST_Docs/index.html
       - name: Leave out PC-only files
         run: rm -f KAST_Docs/*.bat
       - uses: actions/upload-pages-artifact@v3

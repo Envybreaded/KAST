@@ -15,7 +15,7 @@
     load(files) {
       Promise.all(files.map(src => new Promise(done => {
         const s = document.createElement('script');
-        s.src = src;
+        s.src = src + (window.KAST_BUILD && window.KAST_BUILD !== '__BUILD__' ? '?v=' + window.KAST_BUILD : '');
         s.onload = done;
         s.onerror = () => { console.warn('KAST Docs: could not load ' + src); done(); };
         document.head.appendChild(s);
