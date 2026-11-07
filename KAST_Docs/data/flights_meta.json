@@ -8,5 +8,14 @@
     "result": "partial",
     "booster_result": "Lost, script fault",
     "notes": "First LV-5 Kestrel flight. The direct, phase-timed ascent worked and Junction ended 300 m from Node 1. At separation the booster computer asked Trajectories for a prediction while it was not the active vessel; the script crashed and the stage was lost. Fixed 2026-11-06: the booster waits for the FMRS replay and every Trajectories call checks the active vessel. Junction was terminated before docking. Logged with the old single-file logger: no ground track for this flight."
+  },
+  "F8486698": {
+    "sim": true,
+    "number": 0,
+    "date": "2026-11-07",
+    "mission": "Booster Sim practice launch",
+    "vehicle": "LV-5 Kestrel (new booster)",
+    "outcome": "Practice launch in the KAST Booster Sim save to make a new separation start point",
+    "notes": ""
   }
 }

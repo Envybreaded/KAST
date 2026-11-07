@@ -1,0 +1,37 @@
+{
+    "entries": [
+        {
+            "value": "fid",
+            "$type": "kOS.Safe.Encapsulation.StringValue"
+        },
+        {
+            "value": "F8487107",
+            "$type": "kOS.Safe.Encapsulation.StringValue"
+        },
+        {
+            "value": "ship",
+            "$type": "kOS.Safe.Encapsulation.StringValue"
+        },
+        {
+            "value": "junction second tage",
+            "$type": "kOS.Safe.Encapsulation.StringValue"
+        },
+        {
+            "value": "launch_ut",
+            "$type": "kOS.Safe.Encapsulation.StringValue"
+        },
+        {
+            "value": 8487107,
+            "$type": "kOS.Safe.Encapsulation.ScalarIntValue"
+        },
+        {
+            "value": "mode",
+            "$type": "kOS.Safe.Encapsulation.StringValue"
+        },
+        {
+            "value": "parking",
+            "$type": "kOS.Safe.Encapsulation.StringValue"
+        }
+    ],
+    "$type": "kOS.Safe.Encapsulation.Lexicon"
+}

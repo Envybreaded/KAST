@@ -100,3 +100,168 @@ T+212s  landing    alt 1778 m  vs -142 m/s  gs 7 m/s  to pad 3.23 km  impact +3.
 T+217s  landing    alt 1117 m  vs -112 m/s  gs 3 m/s  to pad 3.26 km  impact +3.30 km  LF 1062  thr 86%
 ==== LOG ENDS at 1117 m: KSP crashed during the landing burn ====
 
+
+==== Kestrel Booster run, Kestrel Booster, started T+18s, LF 1941, aim 2500 m past the pad, reserve 650 LF ====
+---- FLIP at T+18s ----
+T+18s  flip       alt 29187 m  vs 417 m/s  gs 354 m/s  to pad 13.57 km  impact       -  LF 1941  thr 0%
+T+23s  flip       alt 31249 m  vs 370 m/s  gs 348 m/s  to pad 15.32 km  impact -61.1 km  LF 1941  thr 0%
+T+29s  flip       alt 33064 m  vs 331 m/s  gs 343 m/s  to pad 17.03 km  impact -61.03 km  LF 1931  thr 12%
+T+34s  flip       alt 34678 m  vs 290 m/s  gs 335 m/s  to pad 18.7 km  impact -60.44 km  LF 1918  thr 12%
+T+39s  flip       alt 36081 m  vs 249 m/s  gs 325 m/s  to pad 20.31 km  impact -59.56 km  LF 1907  thr 0%
+---- BOOSTBACK at T+42s ----
+T+42s  boostback  alt 36785 m  vs 224 m/s  gs 324 m/s  to pad 21.22 km  impact -59.49 km  LF 1907  thr 0%
+T+47s  boostback  alt 37892 m  vs 191 m/s  gs 236 m/s  to pad 22.64 km  impact -49.85 km  LF 1803  thr 100%
+T+52s  boostback  alt 38803 m  vs 159 m/s  gs 146 m/s  to pad 23.57 km  impact -40.07 km  LF 1699  thr 100%
+T+58s  boostback  alt 39549 m  vs 128 m/s  gs 53 m/s  to pad 24.05 km  impact -30.28 km  LF 1594  thr 100%
+T+63s  boostback  alt 40131 m  vs 96 m/s  gs 43 m/s  to pad 24.07 km  impact -20.43 km  LF 1490  thr 100%
+T+68s  boostback  alt 40552 m  vs 66 m/s  gs 142 m/s  to pad 23.62 km  impact -10.5 km  LF 1385  thr 100%
+T+73s  boostback  alt 40813 m  vs 35 m/s  gs 243 m/s  to pad 22.69 km  impact -0.46 km  LF 1281  thr 99%
+---- COAST at T+77s ----
+T+77s  coast      alt 40896 m  vs 5 m/s  gs 272 m/s  to pad 21.71 km  impact +2.41 km  LF 1252  thr 0%
+T+83s  coast      alt 40801 m  vs -41 m/s  gs 272 m/s  to pad 20.34 km  impact +2.42 km  LF 1251  thr 0%
+T+88s  coast      alt 40475 m  vs -85 m/s  gs 272 m/s  to pad 19.01 km  impact +2.41 km  LF 1251  thr 0%
+T+93s  coast      alt 39917 m  vs -130 m/s  gs 272 m/s  to pad 17.69 km  impact +2.41 km  LF 1251  thr 0%
+T+98s  coast      alt 39126 m  vs -175 m/s  gs 271 m/s  to pad 16.36 km  impact +2.4 km  LF 1251  thr 0%
+T+103s  coast      alt 38100 m  vs -219 m/s  gs 270 m/s  to pad 15.04 km  impact +2.35 km  LF 1251  thr 0%
+T+109s  coast      alt 36841 m  vs -264 m/s  gs 269 m/s  to pad 13.72 km  impact +2.29 km  LF 1251  thr 0%
+T+114s  coast      alt 35354 m  vs -307 m/s  gs 267 m/s  to pad 12.4 km  impact +2.23 km  LF 1251  thr 0%
+T+119s  coast      alt 33646 m  vs -350 m/s  gs 265 m/s  to pad 11.1 km  impact +2.19 km  LF 1251  thr 0%
+---- GLIDE at T+123s ----
+T+123s  glide      alt 31993 m  vs -387 m/s  gs 263 m/s  to pad 9.98 km  impact +2.15 km  LF 1251  thr 0%
+T+129s  glide      alt 29785 m  vs -430 m/s  gs 259 m/s  to pad 8.64 km  impact +2.02 km  LF 1251  thr 0%
+T+134s  glide      alt 27447 m  vs -468 m/s  gs 254 m/s  to pad 7.36 km  impact +1.88 km  LF 1251  thr 0%
+T+139s  glide      alt 24928 m  vs -500 m/s  gs 245 m/s  to pad 6.12 km  impact +1.74 km  LF 1251  thr 0%
+T+144s  glide      alt 22269 m  vs -520 m/s  gs 232 m/s  to pad 4.92 km  impact +1.57 km  LF 1251  thr 0%
+T+150s  glide      alt 19551 m  vs -521 m/s  gs 212 m/s  to pad 3.8 km  impact +1.37 km  LF 1251  thr 0%
+T+155s  glide      alt 16902 m  vs -492 m/s  gs 181 m/s  to pad 2.81 km  impact +1.11 km  LF 1251  thr 0%
+T+160s  glide      alt 14503 m  vs -425 m/s  gs 140 m/s  to pad 1.99 km  impact +0.81 km  LF 1251  thr 0%
+T+165s  glide      alt 12553 m  vs -315 m/s  gs 91 m/s  to pad 1.4 km  impact +0.43 km  LF 1251  thr 0%
+T+170s  glide      alt 11100 m  vs -264 m/s  gs 63 m/s  to pad 1.02 km  impact +0.26 km  LF 1251  thr 0%
+T+176s  glide      alt 9763 m  vs -250 m/s  gs 49 m/s  to pad 0.74 km  impact +0.2 km  LF 1251  thr 0%
+T+181s  glide      alt 8500 m  vs -236 m/s  gs 37 m/s  to pad 0.52 km  impact +0.15 km  LF 1251  thr 0%
+T+186s  glide      alt 7311 m  vs -222 m/s  gs 27 m/s  to pad 0.36 km  impact +0.12 km  LF 1251  thr 0%
+T+191s  glide      alt 6186 m  vs -211 m/s  gs 20 m/s  to pad 0.24 km  impact +0.08 km  LF 1251  thr 0%
+T+196s  glide      alt 5119 m  vs -200 m/s  gs 14 m/s  to pad 0.16 km  impact +0.06 km  LF 1251  thr 0%
+T+202s  glide      alt 4103 m  vs -191 m/s  gs 10 m/s  to pad 0.1 km  impact +0.04 km  LF 1251  thr 0%
+T+207s  glide      alt 3136 m  vs -182 m/s  gs 7 m/s  to pad 0.07 km  impact +0.03 km  LF 1251  thr 0%
+T+212s  glide      alt 2212 m  vs -174 m/s  gs 4 m/s  to pad 0.06 km  impact +0.02 km  LF 1251  thr 0%
+---- LANDING at T+217s ----
+T+217s  landing    alt 1348 m  vs -166 m/s  gs 3 m/s  to pad 0.06 km  impact +0.02 km  LF 1251  thr 0%
+T+222s  landing    alt 528 m  vs -152 m/s  gs 1 m/s  to pad 0.06 km  impact +0.02 km  LF 1240  thr 100%
+T+228s  landing    alt 90 m  vs -8 m/s  gs 1 m/s  to pad 0.06 km  impact +0.02 km  LF 1240  thr 100%
+---- DOWN at T+232s ----
+T+232s  down       alt 71 m  vs 0 m/s  gs 2 m/s  to pad 0.04 km  impact +0.02 km  LF 0  thr 0%
+==== DOWN 43 m from the pad, 0 LF left, T+232s ====
+
+==== Kestrel Booster run, Kestrel Booster, started T+6s, LF 1941, aim 2500 m past the pad, reserve 650 LF ====
+---- FLIP at T+6s ----
+T+6s  flip       alt 22773 m  vs 544 m/s  gs 354 m/s  to pad 8.75 km  impact       -  LF 1941  OX 2372  thr 0%
+T+11s  flip       alt 25442 m  vs 484 m/s  gs 345 m/s  to pad 10.51 km  impact -58.38 km  LF 1941  OX 2372  thr 0%
+T+17s  flip       alt 27832 m  vs 431 m/s  gs 334 m/s  to pad 12.2 km  impact -57.23 km  LF 1935  OX 2365  thr 12%
+T+22s  flip       alt 29978 m  vs 394 m/s  gs 323 m/s  to pad 13.83 km  impact -56.74 km  LF 1923  OX 2350  thr 12%
+T+27s  flip       alt 31931 m  vs 357 m/s  gs 313 m/s  to pad 15.4 km  impact -56.2 km  LF 1910  OX 2335  thr 12%
+T+32s  flip       alt 33683 m  vs 316 m/s  gs 305 m/s  to pad 16.92 km  impact -55.59 km  LF 1902  OX 2325  thr 0%
+---- BOOSTBACK at T+35s ----
+T+35s  boostback  alt 34457 m  vs 294 m/s  gs 304 m/s  to pad 17.65 km  impact -55.54 km  LF 1902  OX 2325  thr 0%
+T+40s  boostback  alt 35924 m  vs 263 m/s  gs 218 m/s  to pad 18.96 km  impact -45.62 km  LF 1800  OX 2201  thr 100%
+T+45s  boostback  alt 37202 m  vs 229 m/s  gs 128 m/s  to pad 19.81 km  impact -35.2 km  LF 1696  OX 2073  thr 100%
+T+50s  boostback  alt 38311 m  vs 197 m/s  gs 35 m/s  to pad 20.2 km  impact -24.76 km  LF 1591  OX 1945  thr 100%
+T+56s  boostback  alt 39254 m  vs 166 m/s  gs 61 m/s  to pad 20.14 km  impact -14.22 km  LF 1487  OX 1817  thr 100%
+T+61s  boostback  alt 40033 m  vs 134 m/s  gs 159 m/s  to pad 19.61 km  impact -3.54 km  LF 1382  OX 1689  thr 100%
+T+66s  boostback  alt 40642 m  vs 97 m/s  gs 214 m/s  to pad 18.65 km  impact +2.4 km  LF 1325  OX 1620  thr 15%
+---- COAST at T+66s ----
+T+66s  coast      alt 40646 m  vs 97 m/s  gs 214 m/s  to pad 18.64 km  impact +2.42 km  LF 1325  OX 1620  thr 0%
+T+71s  coast      alt 41027 m  vs 52 m/s  gs 214 m/s  to pad 17.61 km  impact +2.43 km  LF 1325  OX 1619  thr 0%
+T+76s  coast      alt 41179 m  vs 8 m/s  gs 214 m/s  to pad 16.56 km  impact +2.42 km  LF 1325  OX 1619  thr 0%
+T+82s  coast      alt 41100 m  vs -37 m/s  gs 214 m/s  to pad 15.52 km  impact +2.42 km  LF 1325  OX 1619  thr 0%
+T+87s  coast      alt 40789 m  vs -82 m/s  gs 214 m/s  to pad 14.48 km  impact +2.41 km  LF 1325  OX 1619  thr 0%
+T+92s  coast      alt 40249 m  vs -126 m/s  gs 214 m/s  to pad 13.44 km  impact +2.41 km  LF 1325  OX 1619  thr 0%
+T+97s  coast      alt 39479 m  vs -171 m/s  gs 214 m/s  to pad 12.4 km  impact +2.41 km  LF 1325  OX 1619  thr 0%
+T+102s  coast      alt 38478 m  vs -216 m/s  gs 213 m/s  to pad 11.35 km  impact +2.42 km  LF 1325  OX 1619  thr 0%
+T+108s  coast      alt 37244 m  vs -260 m/s  gs 213 m/s  to pad 10.31 km  impact +2.41 km  LF 1325  OX 1619  thr 0%
+T+113s  coast      alt 35779 m  vs -304 m/s  gs 211 m/s  to pad 9.27 km  impact +2.37 km  LF 1325  OX 1619  thr 0%
+T+118s  coast      alt 34083 m  vs -348 m/s  gs 209 m/s  to pad 8.24 km  impact +2.33 km  LF 1325  OX 1619  thr 0%
+T+123s  coast      alt 32164 m  vs -390 m/s  gs 207 m/s  to pad 7.21 km  impact +2.29 km  LF 1325  OX 1619  thr 0%
+---- GLIDE at T+124s ----
+T+124s  glide      alt 32000 m  vs -394 m/s  gs 207 m/s  to pad 7.13 km  impact +2.28 km  LF 1325  OX 1619  thr 0%
+T+129s  glide      alt 29800 m  vs -436 m/s  gs 204 m/s  to pad 6.09 km  impact +2.24 km  LF 1325  OX 1619  thr 0%
+T+134s  glide      alt 27432 m  vs -474 m/s  gs 200 m/s  to pad 5.09 km  impact +2.18 km  LF 1325  OX 1619  thr 0%
+T+139s  glide      alt 24876 m  vs -507 m/s  gs 194 m/s  to pad 4.11 km  impact +2.11 km  LF 1325  OX 1619  thr 0%
+T+145s  glide      alt 22170 m  vs -531 m/s  gs 184 m/s  to pad 3.17 km  impact +2.03 km  LF 1325  OX 1619  thr 0%
+T+150s  glide      alt 19381 m  vs -538 m/s  gs 170 m/s  to pad 2.27 km  impact +1.92 km  LF 1325  OX 1619  thr 0%
+T+155s  glide      alt 16622 m  vs -517 m/s  gs 149 m/s  to pad 1.46 km  impact +1.77 km  LF 1325  OX 1619  thr 0%
+T+160s  glide      alt 14065 m  vs -460 m/s  gs 119 m/s  to pad 0.78 km  impact +1.57 km  LF 1325  OX 1619  thr 0%
+T+165s  glide      alt 11904 m  vs -365 m/s  gs 83 m/s  to pad 0.26 km  impact +1.33 km  LF 1325  OX 1619  thr 0%
+T+171s  glide      alt 10304 m  vs -275 m/s  gs 53 m/s  to pad 0.07 km  impact +1.12 km  LF 1325  OX 1619  thr 0%
+T+176s  glide      alt 8921 m  vs -259 m/s  gs 41 m/s  to pad 0.31 km  impact +1.08 km  LF 1325  OX 1619  thr 0%
+T+181s  glide      alt 7611 m  vs -245 m/s  gs 31 m/s  to pad 0.49 km  impact +1.04 km  LF 1325  OX 1619  thr 0%
+T+186s  glide      alt 6366 m  vs -234 m/s  gs 24 m/s  to pad 0.63 km  impact +1.02 km  LF 1325  OX 1619  thr 0%
+T+191s  glide      alt 5181 m  vs -223 m/s  gs 18 m/s  to pad 0.74 km  impact +0.99 km  LF 1325  OX 1619  thr 0%
+T+197s  glide      alt 4049 m  vs -213 m/s  gs 13 m/s  to pad 0.82 km  impact +0.98 km  LF 1325  OX 1619  thr 0%
+---- LANDING at T+201s ----
+T+201s  landing    alt 3119 m  vs -205 m/s  gs 10 m/s  to pad 0.87 km  impact +0.97 km  LF 1325  OX 1619  thr 0%
+T+206s  landing    alt 2189 m  vs -152 m/s  gs 5 m/s  to pad 0.91 km  impact +0.97 km  LF 1258  OX 1537  thr 47%
+T+212s  landing    alt 1473 m  vs -124 m/s  gs 3 m/s  to pad 0.93 km  impact +0.97 km  LF 1205  OX 1473  thr 55%
+T+217s  landing    alt 902 m  vs -96 m/s  gs 1 m/s  to pad 0.93 km  impact +0.97 km  LF 1142  OX 1395  thr 55%
+T+222s  landing    alt 479 m  vs -67 m/s  gs 4 m/s  to pad 0.92 km  impact +0.97 km  LF 1069  OX 1306  thr 87%
+T+227s  landing    alt 207 m  vs -36 m/s  gs 5 m/s  to pad 0.89 km  impact +0.97 km  LF 985  OX 1204  thr 88%
+T+232s  landing    alt 110 m  vs -7 m/s  gs 2 m/s  to pad 0.88 km  impact +0.97 km  LF 900  OX 1100  thr 63%
+T+238s  landing    alt 92 m  vs -2 m/s  gs 4 m/s  to pad 0.87 km  impact +0.97 km  LF 841  OX 1028  thr 51%
+---- DOWN at T+242s ----
+T+242s  down       alt 89 m  vs 0 m/s  gs 1 m/s  to pad 0.86 km  impact +0.97 km  LF 830  OX 1014  thr 0%
+==== DOWN 865 m from the pad, 830 LF left, T+242s ====
+
+==== Kestrel Booster run, Kestrel Booster, started T+26s, LF 1941, aim 1500 m past the pad, reserve 650 LF ====
+---- FLIP at T+26s ----
+T+26s  flip       alt 32019 m  vs 386 m/s  gs 344 m/s  to pad 15.32 km  impact       -  LF 1941  OX 2372  thr 0%
+T+31s  flip       alt 33911 m  vs 341 m/s  gs 340 m/s  to pad 17.01 km  impact -61.58 km  LF 1941  OX 2372  thr 0%
+---- BOOSTBACK at T+34s ----
+T+34s  boostback  alt 34798 m  vs 319 m/s  gs 338 m/s  to pad 17.88 km  impact -61.54 km  LF 1941  OX 2372  thr 0%
+T+39s  boostback  alt 36342 m  vs 288 m/s  gs 256 m/s  to pad 19.31 km  impact -51.68 km  LF 1842  OX 2251  thr 100%
+T+44s  boostback  alt 37757 m  vs 257 m/s  gs 167 m/s  to pad 20.35 km  impact -41.1 km  LF 1738  OX 2124  thr 100%
+T+49s  boostback  alt 39010 m  vs 225 m/s  gs 76 m/s  to pad 20.94 km  impact -30.49 km  LF 1633  OX 1996  thr 100%
+T+54s  boostback  alt 40099 m  vs 194 m/s  gs 18 m/s  to pad 21.08 km  impact -19.68 km  LF 1528  OX 1868  thr 100%
+T+60s  boostback  alt 41025 m  vs 163 m/s  gs 115 m/s  to pad 20.76 km  impact -8.76 km  LF 1424  OX 1740  thr 100%
+T+65s  boostback  alt 41789 m  vs 130 m/s  gs 200 m/s  to pad 19.97 km  impact +0.72 km  LF 1335  OX 1631  thr 26%
+---- COAST at T+67s ----
+T+67s  coast      alt 42014 m  vs 115 m/s  gs 206 m/s  to pad 19.62 km  impact +1.41 km  LF 1328  OX 1624  thr 0%
+T+72s  coast      alt 42493 m  vs 67 m/s  gs 206 m/s  to pad 18.57 km  impact +1.35 km  LF 1328  OX 1623  thr 0%
+T+77s  coast      alt 42732 m  vs 20 m/s  gs 206 m/s  to pad 17.57 km  impact +1.31 km  LF 1328  OX 1623  thr 0%
+T+82s  coast      alt 42721 m  vs -24 m/s  gs 206 m/s  to pad 16.57 km  impact +1.3 km  LF 1328  OX 1623  thr 0%
+T+88s  coast      alt 42484 m  vs -68 m/s  gs 206 m/s  to pad 15.57 km  impact +1.29 km  LF 1328  OX 1623  thr 0%
+T+93s  coast      alt 42016 m  vs -113 m/s  gs 205 m/s  to pad 14.57 km  impact +1.29 km  LF 1328  OX 1623  thr 0%
+T+98s  coast      alt 41315 m  vs -157 m/s  gs 205 m/s  to pad 13.57 km  impact +1.28 km  LF 1328  OX 1623  thr 0%
+T+103s  coast      alt 40382 m  vs -202 m/s  gs 205 m/s  to pad 12.58 km  impact +1.28 km  LF 1328  OX 1623  thr 0%
+T+108s  coast      alt 39217 m  vs -246 m/s  gs 204 m/s  to pad 11.58 km  impact +1.27 km  LF 1328  OX 1623  thr 0%
+T+114s  coast      alt 37820 m  vs -291 m/s  gs 203 m/s  to pad 10.58 km  impact +1.25 km  LF 1328  OX 1623  thr 0%
+T+119s  coast      alt 36194 m  vs -335 m/s  gs 202 m/s  to pad 9.59 km  impact +1.22 km  LF 1328  OX 1623  thr 0%
+T+124s  coast      alt 34342 m  vs -378 m/s  gs 200 m/s  to pad 8.6 km  impact +1.19 km  LF 1328  OX 1623  thr 0%
+T+129s  coast      alt 32265 m  vs -421 m/s  gs 198 m/s  to pad 7.62 km  impact +1.16 km  LF 1328  OX 1623  thr 0%
+---- GLIDE at T+130s ----
+T+130s  glide      alt 31994 m  vs -426 m/s  gs 198 m/s  to pad 7.5 km  impact +1.16 km  LF 1328  OX 1623  thr 0%
+T+135s  glide      alt 29729 m  vs -466 m/s  gs 195 m/s  to pad 6.55 km  impact +1.12 km  LF 1328  OX 1623  thr 0%
+T+140s  glide      alt 27210 m  vs -503 m/s  gs 191 m/s  to pad 5.59 km  impact +1.07 km  LF 1328  OX 1623  thr 0%
+T+145s  glide      alt 24513 m  vs -533 m/s  gs 185 m/s  to pad 4.66 km  impact +1.03 km  LF 1328  OX 1623  thr 0%
+T+151s  glide      alt 21683 m  vs -553 m/s  gs 176 m/s  to pad 3.75 km  impact +0.97 km  LF 1328  OX 1623  thr 0%
+T+156s  glide      alt 18800 m  vs -552 m/s  gs 161 m/s  to pad 2.9 km  impact +0.86 km  LF 1328  OX 1623  thr 0%
+---- LANDING at T+157s ----
+T+157s  landing    alt 18173 m  vs -549 m/s  gs 156 m/s  to pad 2.73 km  impact +0.83 km  LF 1328  OX 1623  thr 0%
+T+162s  landing    alt 15618 m  vs -468 m/s  gs 120 m/s  to pad 2.05 km  impact +0.83 km  LF 1280  OX 1564  thr 0%
+T+167s  landing    alt 13345 m  vs -402 m/s  gs 92 m/s  to pad 1.51 km  impact +0.83 km  LF 1280  OX 1564  thr 0%
+T+172s  landing    alt 11521 m  vs -297 m/s  gs 58 m/s  to pad 1.13 km  impact +0.83 km  LF 1280  OX 1564  thr 0%
+T+178s  landing    alt 10076 m  vs -268 m/s  gs 43 m/s  to pad 0.88 km  impact +0.83 km  LF 1280  OX 1564  thr 0%
+T+183s  landing    alt 8717 m  vs -255 m/s  gs 33 m/s  to pad 0.68 km  impact +0.83 km  LF 1280  OX 1564  thr 0%
+T+188s  landing    alt 7426 m  vs -242 m/s  gs 25 m/s  to pad 0.53 km  impact +0.83 km  LF 1280  OX 1564  thr 0%
+T+193s  landing    alt 6200 m  vs -230 m/s  gs 19 m/s  to pad 0.42 km  impact +0.83 km  LF 1280  OX 1564  thr 0%
+T+198s  landing    alt 5033 m  vs -219 m/s  gs 14 m/s  to pad 0.33 km  impact +0.83 km  LF 1280  OX 1564  thr 0%
+T+204s  landing    alt 3920 m  vs -207 m/s  gs 10 m/s  to pad 0.27 km  impact +0.83 km  LF 1277  OX 1561  thr 21%
+T+209s  landing    alt 2921 m  vs -177 m/s  gs 5 m/s  to pad 0.24 km  impact +0.83 km  LF 1247  OX 1524  thr 35%
+T+214s  landing    alt 2073 m  vs -149 m/s  gs 2 m/s  to pad 0.22 km  impact +0.83 km  LF 1205  OX 1473  thr 46%
+T+219s  landing    alt 1373 m  vs -121 m/s  gs 1 m/s  to pad 0.21 km  impact +0.83 km  LF 1152  OX 1409  thr 55%
+T+224s  landing    alt 820 m  vs -92 m/s  gs 2 m/s  to pad 0.2 km  impact +0.83 km  LF 1089  OX 1331  thr 92%
+T+230s  landing    alt 417 m  vs -63 m/s  gs 7 m/s  to pad 0.18 km  impact +0.83 km  LF 1016  OX 1242  thr 56%
+T+235s  landing    alt 174 m  vs -29 m/s  gs 22 m/s  to pad 0.12 km  impact +0.83 km  LF 926  OX 1132  thr 99%
+T+240s  landing    alt 101 m  vs -6 m/s  gs 23 m/s  to pad 0.04 km  impact +0.83 km  LF 838  OX 1025  thr 68%
+---- DOWN at T+246s ----
+T+246s  down       alt 70 m  vs 0 m/s  gs 1 m/s  to pad 0.07 km  impact +0.83 km  LF 797  OX 974  thr 0%
+==== DOWN 67 m from the pad, 797 LF left, T+246s ====

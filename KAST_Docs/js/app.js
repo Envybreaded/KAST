@@ -10,6 +10,8 @@
     setLogs(list) { this.logs = list || []; },
     telemetry: null,
     setTelemetry(t) { this.telemetry = t; },
+    gallery: [],
+    setGallery(g) { this.gallery = g || []; },
     load(files) {
       Promise.all(files.map(src => new Promise(done => {
         const s = document.createElement('script');
@@ -87,11 +89,12 @@
     const links = KAST.docs.map(d => el('a', { href: '#/doc/' + d.id, 'data-key': 'doc/' + d.id, text: d.navTitle || d.title }));
     links.push(el('a', { href: '#/logs', 'data-key': 'logs', text: 'Flight logs' }));
     links.push(el('a', { href: '#/telemetry', 'data-key': 'telemetry', text: 'Booster telemetry' }));
+    links.push(el('a', { href: '#/gallery', 'data-key': 'gallery', text: 'Gallery' }));
     navlinks.replaceChildren(...links);
   }
   function markNav() {
     const h = location.hash.replace(/^#\/?/, '').split('/');
-    const key = h[0] === 'log' ? 'logs' : h[0] === 'telemetry' ? 'telemetry' : h.slice(0, 2).join('/');
+    const key = h[0] === 'log' ? 'logs' : h[0] === 'telemetry' ? 'telemetry' : h[0] === 'gallery' ? 'gallery' : h.slice(0, 2).join('/');
     navlinks.querySelectorAll('a').forEach(a => {
       if (a.dataset.key === key) a.setAttribute('aria-current', 'page');
       else a.removeAttribute('aria-current');
@@ -494,6 +497,24 @@
     setPage(nodes, 'Booster telemetry');
   }
 
+
+  /* ---------- gallery ---------- */
+  function renderGallery() {
+    current = null;
+    const items = (KAST.gallery || []).slice().reverse();
+    const hero = el('section', { class: 'hero short', style: "background-image:url('assets/hero-sunset.jpg')" },
+      el('div', { class: 'hero-inner' }, [
+        el('p', { class: 'kicker', text: 'Gallery' }),
+        el('h1', { text: 'From the flight deck' }),
+        P('Screenshots from KAST flights and tests, newest first. Select one to see it full size.', 'lead')
+      ]));
+    const grid = el('div', { class: 'gallery' }, items.map(g => el('figure', { class: 'shot' }, [
+      el('a', { href: g.src, target: '_blank', rel: 'noopener' }, el('img', { src: g.thumb, alt: g.caption, loading: 'lazy' })),
+      el('figcaption', null, [el('span', { class: 'kicker', text: g.tag + ' · ' + g.when }), P(g.caption)])
+    ])));
+    setPage([hero, el('section', { class: 'section' }, items.length ? grid : el('div', { class: 'empty', text: 'No screenshots yet.' }))], 'Gallery');
+  }
+
   /* ---------- router ---------- */
   function route() {
     closeDrawer(false);
@@ -502,6 +523,7 @@
     else if (h[0] === 'logs') renderLogs();
     else if (h[0] === 'log' && h[1]) renderLog(h[1]);
     else if (h[0] === 'telemetry') renderTelemetry(h[1]);
+    else if (h[0] === 'gallery') renderGallery();
     else renderHome();
   }
   function start() {

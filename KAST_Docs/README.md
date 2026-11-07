@@ -51,6 +51,8 @@ against the pad, distance, altitude, speed, fuel by phase and ground track. `too
 
 `KAST_Site` (next to this folder) is a Git repository that mirrors this folder and the kOS logs. Set it up once
 with `KAST_Tools/Setup_KAST_Site.bat` (or "Set up KAST website.bat" on the Desktop). After that,
-Restart KSP.bat starts `KAST_Tools/Publish_KAST_Site.ps1 -Watch`, which pushes changes every 3 minutes while KSP
-runs; GitHub rebuilds the logs and republishes the site. `Publish_KAST_Site_Now.bat` publishes immediately.
+Restart KSP.bat starts `KAST_Tools/KAST_Auto_Publish.ps1`, which publishes whenever a flight is completed: the kOS
+scripts write `Ships/Script/logs/flight_done.txt` when the upper stage parks in orbit and when the booster touches
+down, and flights that end without a marker are published once the logs have been quiet for 10 minutes. GitHub
+rebuilds the logs and republishes the site about a minute later. `Publish_KAST_Site_Now.bat` publishes immediately.
 Edit files here, never in KAST_Site.

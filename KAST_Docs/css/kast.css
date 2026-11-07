@@ -281,3 +281,17 @@ tr.link:hover td { color: var(--gold); }
 }
 
 tr.sel td { color: var(--gold); }
+
+/* gallery */
+.gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 28px; }
+.gallery .shot { margin: 0; }
+.gallery .shot img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; display: block; border: 1px solid rgba(255,255,255,0.12); transition: opacity .2s; }
+.gallery .shot a:hover img { opacity: 0.85; }
+.gallery figcaption { margin-top: 10px; }
+.gallery figcaption .kicker { display: block; margin-bottom: 4px; font-size: 0.72rem; }
+.gallery figcaption p { margin: 0; font-size: 0.92rem; line-height: 1.45; opacity: 0.85; }
+
+/* nav fit */
+.nav-links { gap: 22px; }
+.nav-links a { letter-spacing: 0.12em; }
+@media (max-width: 1500px) { .nav-right { display: none; } }

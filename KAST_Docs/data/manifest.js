@@ -4,5 +4,6 @@ KAST.load([
   'data/docs/horizon-junction-kestrel.js',
   'data/docs/horizon-roadmap.js',
   'data/logs.js',
-  'data/telemetry.js'
+  'data/telemetry.js',
+  'data/gallery.js'
 ]);

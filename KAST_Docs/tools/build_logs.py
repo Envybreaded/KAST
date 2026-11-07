@@ -172,6 +172,13 @@ def main():
         except (ValueError, KeyError, IndexError, TypeError):
             current = {}
 
+    def has_data(fid):                  # skip aborted or just-started launches (header only)
+        for kind in ('ascent', 'booster'):
+            pth = os.path.join(FLIGHTS, fid + '_' + kind + '.csv')
+            if os.path.exists(pth) and read_log(pth)[0]:
+                return True
+        return False
+    flights = [f for f in flights if has_data(f)]
     next_no = max([m.get('number', 0) for m in meta.values()] + [0]) + 1
     changed = False
     for fid in flights:
@@ -188,7 +195,7 @@ def main():
         with open(META, 'w', encoding='utf-8') as f:
             json.dump(meta, f, indent=2)
 
-    logs = [build_flight(fid, meta.get(fid, {})) for fid in flights]
+    logs = [build_flight(fid, meta.get(fid, {})) for fid in flights if not meta.get(fid, {}).get('sim')]
     with io.open(OUT, 'w', encoding='utf-8', newline='\n') as f:
         f.write('/* Written by tools/build_logs.py on %s. Do not edit by hand: change data/flights_meta.json and rebuild. */\n'
                 % datetime.datetime.now().strftime('%Y-%m-%d %H:%M'))
@@ -288,8 +295,8 @@ def build_telemetry(meta):
     if os.path.exists(TELE_META):
         with open(TELE_META, encoding='utf-8') as f:
             notes = json.load(f)
+    n = 0
     if os.path.exists(SIM_LOG):
-        n = 0
         for header, rows, extra in split_runs(SIM_LOG):
             n += 1
             runs.append(build_run('sim%d' % n, 'Booster Sim run %d' % n, 'KAST Booster Sim', header, rows, extra))
@@ -299,8 +306,12 @@ def build_telemetry(meta):
             if not mm:
                 continue
             for header, rows, extra in split_runs(os.path.join(FLIGHTS, f)):
-                no = meta.get(mm.group(1), {}).get('number', '?')
-                runs.append(build_run(mm.group(1), 'Flight %s booster' % no, 'Flight', header, rows, extra))
+                fm = meta.get(mm.group(1), {})
+                if fm.get('sim'):      # practice launch in the Booster Sim save
+                    n += 1
+                    runs.append(build_run('sim%d' % n, 'Booster Sim run %d' % n, 'KAST Booster Sim', header, rows, extra))
+                else:
+                    runs.append(build_run(mm.group(1), 'Flight %s booster' % fm.get('number', '?'), 'Flight', header, rows, extra))
     for r in runs:
         if r['id'] in notes:
             r.update(notes[r['id']])
