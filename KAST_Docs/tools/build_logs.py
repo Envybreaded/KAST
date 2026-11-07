@@ -320,11 +320,20 @@ def build_telemetry(meta):
                 % datetime.datetime.now().strftime('%Y-%m-%d %H:%M'))
         f.write('KAST.setTelemetry(' + json.dumps({'built': datetime.datetime.now().strftime('%Y-%m-%d %H:%M'), 'pad': LZ, 'runs': runs}, separators=(',', ':')) + ');\n')
     print('Telemetry: %d booster run(s) into %s' % (len(runs), TELE_OUT))
-    tl = os.path.join(LOGS, 'trajlog.txt')          # plain-text trajectory log written by kestrel_booster.ks
+    # plain-text trajectory logs written by kestrel_booster.ks: logs/trajlog.txt (Booster Sim) plus one
+    # flights/<FID>_trajlog.txt per real flight. Only files that were published are here (confidential ones never are).
+    parts = []
+    tl = os.path.join(LOGS, 'trajlog.txt')
     if os.path.exists(tl):
-        import shutil
-        shutil.copyfile(tl, os.path.join(DOCS, 'data', 'trajlog.txt'))
-        print('Copied trajlog.txt for the site')
+        parts.append(open(tl, encoding='utf-8', errors='replace').read())
+    if os.path.isdir(FLIGHTS):
+        for f in sorted(os.listdir(FLIGHTS)):
+            if f.endswith('_trajlog.txt'):
+                parts.append(open(os.path.join(FLIGHTS, f), encoding='utf-8', errors='replace').read())
+    if parts:
+        with io.open(os.path.join(DOCS, 'data', 'trajlog.txt'), 'w', encoding='utf-8', newline='\n') as fo:
+            fo.write('\n'.join(p.replace('\r\n', '\n') for p in parts))
+        print('Wrote trajlog.txt for the site (%d file(s))' % len(parts))
 
 
 if __name__ == '__main__':
