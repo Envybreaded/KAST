@@ -342,27 +342,14 @@ tr.sel td { color: var(--gold); }
 .strip-foot .lead { margin: 0; }
 @media (max-width: 720px) { .strip { grid-template-columns: repeat(2, 1fr); } .hero.home h1 { font-size: clamp(2.6rem, 12vw, 4rem); } }
 
-/* ---------- SpaceX-style stacked panels (home) ----------
-   Every photo fills the screen and stays pinned while the next slides up over it: no black bands
-   between images. The darkening sits only behind the text, at the bottom and on the text side. */
-.stack { position: sticky; top: 0; min-height: 100vh; min-height: 100svh; }
-.panel.stack::before {
-  background:
-    linear-gradient(to top, rgba(0, 0, 0, 0.78) 0%, rgba(0, 0, 0, 0.25) 38%, rgba(0, 0, 0, 0) 60%),
-    linear-gradient(to right, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0) 55%);
+/* ---------- SpaceX-style sections (home), matched to spacex.com ----------
+   Each photo is exactly one screen tall and the sections sit back to back in normal scroll: no pinning,
+   no gaps, no shadows. Like SpaceX, the only overlay is a fade from clear at mid-height to black at the
+   bottom of each section, and the text sits at the bottom left. */
+.stack { position: relative; min-height: 100vh; min-height: 100svh; align-items: flex-end; }
+.panel.stack, .panel.stack.right { justify-content: flex-start; text-align: left; }
+.hero.home.stack::before, .panel.stack::before, .panel.stack.right::before {
+  background: linear-gradient(rgba(0, 0, 0, 0) 50%, rgb(0, 0, 0) 100%);
 }
-.panel.stack.right::before {
-  background:
-    linear-gradient(to top, rgba(0, 0, 0, 0.78) 0%, rgba(0, 0, 0, 0.25) 38%, rgba(0, 0, 0, 0) 60%),
-    linear-gradient(to left, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0) 55%);
-}
-.hero.home.stack::before {
-  background:
-    linear-gradient(to bottom, rgba(0, 0, 0, 0.45) 0%, rgba(0, 0, 0, 0) 22%),
-    linear-gradient(to top, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.15) 40%, rgba(0, 0, 0, 0) 60%);
-}
-/* a faint top shadow on each incoming panel, so the edge reads as one image sliding over another */
-.panel.stack { box-shadow: 0 -24px 48px rgba(0, 0, 0, 0.55); }
-/* the photo strip and the footer scroll over the pinned panels */
 .strip-wrap { position: relative; z-index: 1; padding-top: clamp(48px, 8vh, 96px); }
 .footer { position: relative; z-index: 1; background: var(--deep); }
