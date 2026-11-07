@@ -1,16 +1,16 @@
 /* KAST Docs: Horizon Space Center
-   Palette taken from the KAST emblem: navy field, gold ring, Kerbin blue. */
+   Palette: black, white and the KAST emblem gold. */
 
 :root {
-  --deep: #061225;
-  --navy: #0C1F3B;
-  --panel: #10284A;
-  --line: #22426D;
-  --ink: #F3F5F8;
-  --muted: #A3B2C7;
+  --deep: #000000;
+  --navy: #0B0B0B;
+  --panel: #151515;
+  --line: #2A2A2A;
+  --ink: #FFFFFF;
+  --muted: #B3B3B3;
   --gold: #C9A24B;
-  --sky: #8DB8EE;
-  --blue: #2E6CB3;
+  --sky: #F2F2F2;
+  --blue: #8A6E2F;
   --display: "Bahnschrift", "D-DIN", "DIN Alternate", "Arial Narrow", sans-serif;
   --body: "Segoe UI", system-ui, -apple-system, sans-serif;
   --nav-h: 64px;
@@ -56,7 +56,7 @@ strong { color: var(--ink); font-weight: 600; }
   height: var(--nav-h);
   display: flex; align-items: center; gap: 40px;
   padding: 0 clamp(20px, 4vw, 56px);
-  background: linear-gradient(to bottom, rgba(6, 18, 37, 0.85), rgba(6, 18, 37, 0));
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0));
   transition: background-color 0.2s;
 }
 .nav.solid { background: var(--deep); border-bottom: 1px solid var(--line); }
@@ -99,14 +99,14 @@ strong { color: var(--ink); font-weight: 600; }
 .hero::before, .panel::before {
   content: ""; position: absolute; inset: 0; z-index: -1;
   background:
-    linear-gradient(to top, rgba(6, 18, 37, 0.96) 0%, rgba(6, 18, 37, 0.55) 45%, rgba(6, 18, 37, 0.25) 100%),
-    linear-gradient(to right, rgba(6, 18, 37, 0.7), rgba(6, 18, 37, 0) 60%);
+    linear-gradient(to top, rgba(0, 0, 0, 0.96) 0%, rgba(0, 0, 0, 0.55) 45%, rgba(0, 0, 0, 0.25) 100%),
+    linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0) 60%);
 }
 .panel.right { justify-content: flex-end; text-align: left; }
 .panel.right::before {
   background:
-    linear-gradient(to top, rgba(6, 18, 37, 0.96) 0%, rgba(6, 18, 37, 0.5) 45%, rgba(6, 18, 37, 0.2) 100%),
-    linear-gradient(to left, rgba(6, 18, 37, 0.75), rgba(6, 18, 37, 0) 60%);
+    linear-gradient(to top, rgba(0, 0, 0, 0.96) 0%, rgba(0, 0, 0, 0.5) 45%, rgba(0, 0, 0, 0.2) 100%),
+    linear-gradient(to left, rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0) 60%);
 }
 .hero-inner, .panel-inner { max-width: 760px; }
 .panel.emblem { background-image: none; background-color: var(--navy); }
@@ -208,7 +208,7 @@ tr.link:hover td { color: var(--gold); }
 .badge.bad { border-color: #D9705C; color: #F0A090; }
 
 /* ---------- drawer (step details) ---------- */
-.scrim { position: fixed; inset: 0; z-index: 40; background: rgba(3, 9, 20, 0.55); }
+.scrim { position: fixed; inset: 0; z-index: 40; background: rgba(0, 0, 0, 0.55); }
 .drawer {
   position: fixed; z-index: 50; top: 0; right: 0; bottom: 0;
   width: min(560px, 100vw);
@@ -252,7 +252,7 @@ tr.link:hover td { color: var(--gold); }
 .kc-svg { width: 100%; height: auto; overflow: visible; }
 .kc-svg text { font-family: var(--body); font-size: 11px; fill: var(--muted); }
 .kc-grid { stroke: var(--line); stroke-width: 1; }
-.kc-axis { stroke: #3A5B88; stroke-width: 1; }
+.kc-axis { stroke: #444444; stroke-width: 1; }
 .kc-tip { font-family: var(--display); }
 .kc-tip-bg { fill: var(--deep); stroke: var(--line); }
 .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 0; margin: 0; border-top: 1px solid var(--line); }
@@ -299,21 +299,21 @@ tr.sel td { color: var(--gold); }
 /* photos melt into the navy at both edges, so the page reads as one continuous scroll */
 .hero::before, .panel::before {
   background:
-    linear-gradient(to bottom, var(--deep) 0%, rgba(6, 18, 37, 0) 22%),
-    linear-gradient(to top, var(--deep) 0%, rgba(6, 18, 37, 0.6) 38%, rgba(6, 18, 37, 0.08) 70%),
-    linear-gradient(to right, rgba(6, 18, 37, 0.72), rgba(6, 18, 37, 0) 58%);
+    linear-gradient(to bottom, var(--deep) 0%, rgba(0, 0, 0, 0) 22%),
+    linear-gradient(to top, var(--deep) 0%, rgba(0, 0, 0, 0.6) 38%, rgba(0, 0, 0, 0.08) 70%),
+    linear-gradient(to right, rgba(0, 0, 0, 0.72), rgba(0, 0, 0, 0) 58%);
 }
 .panel.right::before {
   background:
-    linear-gradient(to bottom, var(--deep) 0%, rgba(6, 18, 37, 0) 22%),
-    linear-gradient(to top, var(--deep) 0%, rgba(6, 18, 37, 0.6) 38%, rgba(6, 18, 37, 0.08) 70%),
-    linear-gradient(to left, rgba(6, 18, 37, 0.72), rgba(6, 18, 37, 0) 58%);
+    linear-gradient(to bottom, var(--deep) 0%, rgba(0, 0, 0, 0) 22%),
+    linear-gradient(to top, var(--deep) 0%, rgba(0, 0, 0, 0.6) 38%, rgba(0, 0, 0, 0.08) 70%),
+    linear-gradient(to left, rgba(0, 0, 0, 0.72), rgba(0, 0, 0, 0) 58%);
 }
 .hero.home { min-height: 100vh; background-image: url('../assets/hero-sunset.jpg'); background-position: center 60%; }
 .hero.home::before {
   background:
-    linear-gradient(to bottom, rgba(6, 18, 37, 0.55) 0%, rgba(6, 18, 37, 0) 26%),
-    linear-gradient(to top, var(--deep) 0%, rgba(6, 18, 37, 0.35) 30%, rgba(6, 18, 37, 0) 55%);
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0) 26%),
+    linear-gradient(to top, var(--deep) 0%, rgba(0, 0, 0, 0.35) 30%, rgba(0, 0, 0, 0) 55%);
 }
 .hero.home h1 { font-size: clamp(3rem, 8vw, 7rem); max-width: 11ch; }
 .panel-title { font-size: clamp(2rem, 4.5vw, 3.6rem); }
@@ -327,10 +327,10 @@ tr.sel td { color: var(--gold); }
 @media (prefers-reduced-motion: reduce) { #app.enter { animation: none; } html { scroll-behavior: auto; } }
 
 /* nav: transparent over photos, frosted once you scroll */
-.nav.solid { background: rgba(6, 18, 37, 0.82); border-bottom-color: transparent; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+.nav.solid { background: rgba(0, 0, 0, 0.82); border-bottom-color: transparent; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
 
 /* content pages: lighter section rules */
-.section + .section { border-top-color: rgba(34, 66, 109, 0.45); }
+.section + .section { border-top-color: rgba(255, 255, 255, 0.10); }
 
 /* home: edge-to-edge photo strip into the gallery */
 .strip-wrap { padding: 0 0 clamp(48px, 8vh, 96px); background: var(--deep); }

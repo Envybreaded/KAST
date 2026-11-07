@@ -28,7 +28,7 @@ KAST.registerDoc({
   chartNote: 'Fly it left to right, top to bottom. Select any step for the full procedure; tick steps off as you go.',
   lanes: [
     {
-      name: 'Pre-launch', color: '#7F93AE', note: 'In the VAB and on the pad.',
+      name: 'Pre-launch', color: '#9A9A9A', note: 'In the VAB and on the pad.',
       steps: [
         {
           id: 'practice', title: 'Practise the landing', time: 'Sim save',

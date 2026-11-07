@@ -37,7 +37,7 @@
     (o.bands || []).forEach((b, i) => {
       const a = X(Math.max(x0, b.from)), z = X(Math.min(x1, b.to));
       if (z - a < 1) return;
-      s('rect', { x: a, y: T, width: z - a, height: H - T - B, style: `fill:${i % 2 ? 'rgba(141,184,238,0.06)' : 'rgba(141,184,238,0.02)'}` }, svg);
+      s('rect', { x: a, y: T, width: z - a, height: H - T - B, style: `fill:${i % 2 ? 'rgba(255,255,255,0.05)' : 'rgba(255,255,255,0.015)'}` }, svg);
       if (z - a > 46) { const t = s('text', { x: a + 6, y: T - 10 }, svg); t.textContent = b.label; }
     });
     yt.forEach(v => {
@@ -111,13 +111,13 @@
     const sc = Math.min((W - 2 * M) / spanLng, (H - 2 * M) / spanLat) * 0.92;
     const X = v => W / 2 + (v - cLng) * sc, Y = v => H / 2 - (v - cLat) * sc;
     const svg = s('svg', { viewBox: `0 0 ${W} ${H}`, class: 'kc-svg', role: 'img', 'aria-label': 'Ground track' });
-    s('rect', { x: 0, y: 0, width: W, height: H, style: 'fill:rgba(46,108,179,0.08)' }, svg);
+    s('rect', { x: 0, y: 0, width: W, height: H, style: 'fill:rgba(201,162,75,0.05)' }, svg);
     ticks(cLng - W / 2 / sc, cLng + W / 2 / sc, 6).forEach(v => {
       s('line', { x1: X(v), x2: X(v), y1: 0, y2: H, class: 'kc-grid' }, svg);
       const t = s('text', { x: X(v) + 4, y: H - 8 }, svg); t.textContent = fmtNum(v) + '°';
     });
     if (Y(0) > 0 && Y(0) < H) {
-      s('line', { x1: 0, x2: W, y1: Y(0), y2: Y(0), style: 'stroke:#3A5B88;stroke-dasharray:4 4' }, svg);
+      s('line', { x1: 0, x2: W, y1: Y(0), y2: Y(0), style: 'stroke:#444444;stroke-dasharray:4 4' }, svg);
       const t = s('text', { x: 8, y: Y(0) - 6 }, svg); t.textContent = 'equator';
     }
     o.tracks.forEach(t => {
