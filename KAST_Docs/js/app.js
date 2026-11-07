@@ -106,14 +106,14 @@
   /* ---------- home ---------- */
   function renderHome() {
     current = null;
-    const panel = (o, i) => el('section', { class: 'panel' + (i % 2 ? ' right' : ''), style: `background-image:url('${o.img}')` },
+    const panel = (o, i) => el('section', { class: 'panel stack' + (i % 2 ? ' right' : ''), style: `background-image:url('${o.img}')` },
       el('div', { class: 'panel-inner' }, [
         el('p', { class: 'kicker', text: o.kicker }),
         el('h2', { class: 'display panel-title', text: o.title }),
         P(o.text, 'lead'),
         el('div', { class: 'btn-row' }, el('a', { class: 'btn', href: o.href, text: o.cta }))
       ]));
-    const hero = el('section', { class: 'hero home' },
+    const hero = el('section', { class: 'hero home stack' },
       el('div', { class: 'hero-inner' }, [
         el('p', { class: 'kicker', text: 'Horizon Space Center' }),
         el('h1', { text: 'Building Horizon Station' }),
