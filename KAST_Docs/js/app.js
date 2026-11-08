@@ -133,7 +133,7 @@
     KAST.docs.forEach(d => items.push({ img: d.hero || 'assets/hero-orbit.jpg', kicker: d.kind + (d.status ? ', ' + d.status.toLowerCase() : ''), title: d.title, text: d.subtitle, href: '#/doc/' + d.id, cta: d.cta || 'Open' }));
     const runs = (KAST.telemetry && KAST.telemetry.runs) || [];
     const landed = runs.map(r => r.miss_final).filter(m => typeof m === 'number' && m < 2000);
-    items.push({ img: 'assets/photo-boostback.jpg', kicker: 'Booster telemetry', title: 'First stage return',
+    items.push({ img: 'assets/photo-f9rcs-descent.jpg', kicker: 'Booster telemetry', title: 'First stage return',
       text: runs.length ? runs.length + ' booster runs logged' + (landed.length ? ', closest touchdown ' + Math.min(...landed) + ' m from the pad.' : '.') + ' Every flip, boostback, glide and landing burn, charted.' : 'Every flip, boostback, glide and landing burn, charted.',
       href: '#/telemetry', cta: 'Booster telemetry' });
     items.push({ img: 'assets/photo-ascent.jpg', kicker: 'Flight logs', title: KAST.logs.length ? KAST.logs.length + (KAST.logs.length === 1 ? ' flight' : ' flights') + ' on record' : 'No flights yet',
@@ -454,7 +454,7 @@
   function renderTelemetry(id) {
     current = null;
     const T = KAST.telemetry, runs = (T && T.runs) || [];
-    const hero = el('section', { class: 'hero short', style: "background-image:url('assets/hero-pad.jpg')" },
+    const hero = el('section', { class: 'hero short', style: "background-image:url('assets/photo-f9rcs-descent.jpg')" },
       el('div', { class: 'hero-inner' }, [
         el('p', { class: 'kicker', text: 'Booster telemetry' }),
         el('h1', { text: 'First stage return' }),
@@ -699,7 +699,7 @@
       return setPage([hero, stationTabs(m.id), facts, body].filter(Boolean), 'Horizon ' + m.title);
     }
     const ready = missions.filter(m => m.plan).length;
-    const hero = el('section', { class: 'hero short', style: "background-image:url('assets/hero-sunset.jpg')" },
+    const hero = el('section', { class: 'hero short', style: "background-image:url('assets/photo-junction-ascent.jpg')" },
       el('div', { class: 'hero-inner' }, [
         el('p', { class: 'kicker', text: 'Horizon Station' }),
         el('h1', { text: 'Building Horizon Station' }),

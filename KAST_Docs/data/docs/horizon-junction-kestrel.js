@@ -10,7 +10,7 @@ KAST.registerDoc({
   title: 'Horizon Junction',
   vehicle: 'LV-5 Kestrel',
   cta: 'View flight plan',
-  hero: 'assets/photo-f9rcs-descent.jpg',
+  hero: 'assets/photo-junction-ascent.jpg',
   subtitle: 'Kestrel delivers Horizon Junction to KASP Station Node 1 and docks it to the bottom port. The first stage then flies itself home to the pad for reflight.',
   checklist: true,
   facts: [

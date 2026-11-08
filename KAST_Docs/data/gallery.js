@@ -97,5 +97,12 @@ KAST.setGallery([
   "when": "2026-11-07 02:46",
   "tag": "Launch pad",
   "caption": "Sunset over Horizon Space Center, a Kestrel on the pad."
+ },
+ {
+  "src": "assets/gallery/15_b9cf5d24.jpg",
+  "thumb": "assets/gallery/15_b9cf5d24_t.jpg",
+  "when": "2026-11-08 00:34",
+  "tag": "Horizon Junction",
+  "caption": "Kestrel's second stage burning for orbit with Horizon Junction, the sun overhead."
  }
 ]);
