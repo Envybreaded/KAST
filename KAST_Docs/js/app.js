@@ -12,6 +12,8 @@
     setTelemetry(t) { this.telemetry = t; },
     gallery: [],
     setGallery(g) { this.gallery = g || []; },
+    rnd: null,
+    setRnd(r) { this.rnd = r; },
     load(files) {
       Promise.all(files.map(src => new Promise(done => {
         const s = document.createElement('script');
@@ -91,13 +93,14 @@
     KAST.docs.filter(d => d.group !== 'station').forEach(d => links.push(el('a', { href: '#/doc/' + d.id, 'data-key': 'doc/' + d.id, text: d.navTitle || d.title })));
     links.push(el('a', { href: '#/logs', 'data-key': 'logs', text: 'Flight logs' }));
     links.push(el('a', { href: '#/telemetry', 'data-key': 'telemetry', text: 'Booster telemetry' }));
+    links.push(el('a', { href: '#/rnd', 'data-key': 'rnd', text: 'R&D' }));
     links.push(el('a', { href: '#/gallery', 'data-key': 'gallery', text: 'Gallery' }));
     navlinks.replaceChildren(...links);
   }
   function markNav() {
     const h = location.hash.replace(/^#\/?/, '').split('/');
     const inStation = h[0] === 'station' || (h[0] === 'doc' && KAST.docs.some(d => d.id === h[1] && d.group === 'station'));
-    const key = inStation ? 'station' : h[0] === 'log' ? 'logs' : h[0] === 'telemetry' ? 'telemetry' : h[0] === 'gallery' ? 'gallery' : h.slice(0, 2).join('/');
+    const key = inStation ? 'station' : h[0] === 'log' ? 'logs' : h[0] === 'telemetry' ? 'telemetry' : h[0] === 'gallery' ? 'gallery' : h[0] === 'rnd' ? 'rnd' : h.slice(0, 2).join('/');
     navlinks.querySelectorAll('a').forEach(a => {
       if (a.dataset.key === key) a.setAttribute('aria-current', 'page');
       else a.removeAttribute('aria-current');
@@ -536,6 +539,122 @@
   }
 
 
+
+  /* ---------- R&D ---------- */
+  const SVGNS = 'http://www.w3.org/2000/svg';
+  function svg(tag, attrs, kids) {
+    const n = document.createElementNS(SVGNS, tag);
+    for (const k in attrs || {}) if (attrs[k] != null) n.setAttribute(k, attrs[k]);
+    (kids || []).forEach(c => c && n.appendChild(c));
+    return n;
+  }
+  const rndEta = n => n.state === 'done' ? 'Researched' : n.eta === 0 ? 'Ready to research now' : n.eta < 1 ? 'Under a day' : 'About ' + Math.round(n.eta) + (Math.round(n.eta) === 1 ? ' day' : ' days');
+  const rndState = { done: 'Researched', open: 'Available now', locked: 'Locked' };
+  function openRndDrawer(n) {
+    const r = KAST.rnd, byId = Object.fromEntries(r.nodes.map(x => [x.id, x]));
+    const ms = r.milestones.find(m => m.id === n.id);
+    const body = [
+      el('p', { class: 'kicker', text: ms ? 'Milestone: ' + ms.name : 'Research node' }),
+      el('h2', { id: 'drawer-title', text: n.title }),
+      el('div', { class: 'drawer-meta' }, [
+        el('span', { html: '<b>' + n.cost + '</b> science' }),
+        el('span', { class: 'badge ' + (n.state === 'done' ? 'good' : n.state === 'open' ? 'warn' : ''), text: rndState[n.state] }),
+        el('span', { text: rndEta(n) })
+      ]),
+      ms ? P(ms.text, 'lead') : P(n.desc, 'lead')
+    ];
+    if (ms && n.desc) body.push(P(n.desc));
+    if (n.state !== 'done') {
+      body.push(el('h4', { text: 'Path to unlock' }));
+      body.push(el('ol', null, n.need.map(id => el('li', { html: fmt('**' + byId[id].title + '**, ' + byId[id].cost + ' science') }))));
+      body.push(P('Science still needed: **' + n.needCost + '**, with ' + r.science + ' on hand.'));
+    }
+    if (n.notable.length) {
+      body.push(el('h4', { text: n.parts + ' parts' + (n.spacex ? ', ' + n.spacex + ' SpaceX' : '') }));
+      body.push(el('ul', null, n.notable.map(t => el('li', { text: t }))));
+    }
+    drawerBody.replaceChildren(...body);
+    drawerBody.scrollTop = 0;
+    const oldFoot = drawer.querySelector('.drawer-foot'); if (oldFoot) oldFoot.remove();
+    drawer.classList.add('open'); drawer.setAttribute('aria-hidden', 'false'); scrim.hidden = false;
+    document.getElementById('drawer-close').focus({ preventScroll: true });
+  }
+  function renderRnd(openId) {
+    current = null;
+    const r = KAST.rnd;
+    if (!r) return renderMissing('No R&D data yet (data/rnd.js).');
+    const byId = Object.fromEntries(r.nodes.map(n => [n.id, n]));
+    const hero = el('section', { class: 'hero short', style: "background-image:url('assets/photo-ascent.jpg')" },
+      el('div', { class: 'hero-inner' }, [
+        el('p', { class: 'kicker', text: 'Research and development' }),
+        el('h1', { text: 'The road to Starship' }),
+        P('The KAST tech tree from the Horizon career, the SpaceX milestones still ahead, and how long each will take at the program\'s current research pace.', 'lead')
+      ]));
+    const facts = el('dl', { class: 'facts' }, [
+      ['Science on hand', String(r.science)],
+      ['Nodes researched', r.researched + ' of ' + r.total],
+      ['Research pace', r.rate.toFixed(1) + ' science a day'],
+      ['Science earned', Math.round(r.earned) + ' in ' + Math.round(r.days) + ' days'],
+      ['Snapshot', r.asOf]
+    ].map(f => el('div', { class: 'fact' }, [el('dt', { text: f[0] }), el('dd', { text: f[1] })])));
+
+    // milestones
+    const cards = r.milestones.map(m => {
+      const n = byId[m.id]; if (!n) return null;
+      const pct = n.state === 'done' ? 100 : Math.min(100, Math.round(100 * r.science / Math.max(1, n.needCost)));
+      return el('button', { class: 'ms-card s-' + n.state, type: 'button', onclick: () => openRndDrawer(n) }, [
+        el('div', { class: 'ms-top' }, [el('span', { class: 'ms-node', text: n.title }), el('span', { class: 'badge ' + (n.state === 'done' ? 'good' : n.state === 'open' ? 'warn' : ''), text: rndState[n.state] })]),
+        el('h3', { text: m.name }),
+        P(m.text),
+        el('div', { class: 'ms-eta' }, [el('strong', { text: rndEta(n) }), el('span', { text: n.state === 'done' ? '' : n.needCost + ' science to unlock' + (n.need.length > 1 ? ', ' + n.need.length + ' nodes' : '') })]),
+        el('div', { class: 'progress-bar ms-bar' }, el('span', { style: 'width:' + pct + '%' }))
+      ]);
+    });
+
+    // the tree, laid out from the game's own node positions
+    const xs = r.nodes.map(n => n.x), ys = r.nodes.map(n => n.y);
+    const minX = Math.min(...xs), maxX = Math.max(...xs), minY = Math.min(...ys), maxY = Math.max(...ys);
+    const S = 0.62, pad = 30, W = (maxX - minX) * S + pad * 2, H = (maxY - minY) * S + pad * 2 + 30;
+    const X = n => pad + (n.x - minX) * S, Y = n => pad + (maxY - n.y) * S;
+    const msIds = new Set(r.milestones.map(m => m.id));
+    const edges = svg('g', { class: 'rnd-edges' }), dots = svg('g', { class: 'rnd-nodes' });
+    r.nodes.forEach(n => n.parents.forEach(pid => {
+      const p = byId[pid]; if (!p) return;
+      const x1 = X(p), y1 = Y(p), x2 = X(n), y2 = Y(n), mx = (x1 + x2) / 2;
+      edges.appendChild(svg('path', { d: `M${x1} ${y1} H${mx} V${y2} H${x2}`, class: 'rnd-edge' + (p.state === 'done' && n.state === 'done' ? ' done' : p.state === 'done' ? ' open' : '') }));
+    }));
+    r.nodes.forEach(n => {
+      const g = svg('g', { class: 'rnd-node s-' + n.state + (msIds.has(n.id) ? ' ms' : ''), transform: `translate(${X(n)},${Y(n)})`, tabindex: '0', role: 'button', 'aria-label': n.title + ', ' + rndState[n.state] }, [
+        svg('title', {}, [document.createTextNode(n.title + ' (' + n.cost + ' science, ' + rndState[n.state].toLowerCase() + ')')]),
+        msIds.has(n.id) ? svg('circle', { r: 15, class: 'ms-ring' }) : null,
+        svg('circle', { r: 9, class: 'dot' })
+      ]);
+      if (msIds.has(n.id)) g.appendChild(svg('text', { y: 30, 'text-anchor': 'middle', class: 'ms-label' }, [document.createTextNode(r.milestones.find(m => m.id === n.id).name)]));
+      g.addEventListener('click', () => openRndDrawer(n));
+      g.addEventListener('keydown', e => { if (e.key === 'Enter') openRndDrawer(n); });
+      dots.appendChild(g);
+    });
+    const tree = svg('svg', { viewBox: `0 0 ${W} ${H}`, width: W, height: H, class: 'rnd-svg' }, [edges, dots]);
+    const legend = el('div', { class: 'legend' }, [
+      el('span', null, [el('i', { class: 'rnd-key done' }), 'Researched']),
+      el('span', null, [el('i', { class: 'rnd-key open' }), 'Available now']),
+      el('span', null, [el('i', { class: 'rnd-key' }), 'Locked']),
+      el('span', null, [el('i', { class: 'rnd-key ms' }), 'SpaceX milestone'])
+    ]);
+    setPage([hero, facts,
+      el('section', { class: 'section' }, [
+        el('div', { class: 'section-head' }, el('div', null, [el('h2', { text: 'Milestones' }), P('Estimates assume the current pace of ' + r.rate.toFixed(1) + ' science a day and count every prerequisite still to research. Select a milestone for its path and parts.')])),
+        el('div', { class: 'milestones' }, cards)
+      ]),
+      el('section', { class: 'section' }, [
+        el('div', { class: 'section-head' }, el('div', null, [el('h2', { text: 'Tech tree' }), P('Laid out as in the game. Select any node for its cost, parts and time to unlock.')])),
+        el('div', { class: 'rnd-tree' }, tree),
+        legend
+      ])
+    ], 'R&D');
+    if (openId && byId[openId]) openRndDrawer(byId[openId]);
+  }
+
   /* ---------- Building Horizon Station ---------- */
   // Missions come from the roadmap's launch steps; a mission gets a flight plan when a doc
   // with group: 'station' and stationMission: '<step id>' is listed in data/manifest.js.
@@ -609,6 +728,7 @@
     else if (h[0] === 'log' && h[1]) renderLog(h[1]);
     else if (h[0] === 'telemetry') renderTelemetry(h[1]);
     else if (h[0] === 'gallery') renderGallery();
+    else if (h[0] === 'rnd') renderRnd(h[1]);
     else renderHome();
   }
   function start() {

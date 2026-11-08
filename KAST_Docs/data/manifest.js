@@ -5,5 +5,6 @@ KAST.load([
   'data/docs/horizon-roadmap.js',
   'data/logs.js',
   'data/telemetry.js',
-  'data/gallery.js'
+  'data/gallery.js',
+  'data/rnd.js'
 ]);
