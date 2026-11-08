@@ -75,7 +75,8 @@
   function footer() {
     return el('footer', { class: 'footer' }, [
       el('span', { text: 'KAST, Horizon Space Center' }),
-      el('span', { text: 'Files live in KAST_Docs. Add documents in data/docs and list them in data/manifest.js.' })
+      el('span', { text: 'Files live in KAST_Docs. Add documents in data/docs and list them in data/manifest.js.' }),
+      el('span', { text: 'Visits are logged: IP address, time and page.' })
     ]);
   }
   function setPage(nodes, title) {
