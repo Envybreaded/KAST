@@ -428,3 +428,69 @@ tr.sel td { color: var(--gold); }
 .gate h1 { color: var(--gold, #C9A24B); font-size: clamp(2.6rem, 8vw, 6.5rem); line-height: 1; margin: 18px 0 26px; text-transform: uppercase; letter-spacing: 0.04em; }
 .gate-kicker { color: #fff; letter-spacing: 0.2em; text-transform: uppercase; font-size: 0.85rem; margin: 0; }
 .gate-foot { color: #B3B3B3; margin: 0; }
+
+/* ---------- the Kestrel in 3D ---------- */
+.k3d-head { padding-top: calc(var(--nav-h) + clamp(28px, 5vh, 56px)); padding-bottom: clamp(24px, 4vh, 40px); }
+.k3d-head h1 { font-size: clamp(2.4rem, 5vw, 4rem); }
+.k3d-host { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.k3d-loading { display: grid; place-items: center; height: min(78vh, 860px); color: var(--muted); font-family: var(--display); letter-spacing: 0.2em; text-transform: uppercase; font-size: 0.8rem; }
+.k3d { display: grid; grid-template-columns: minmax(0, 1fr) clamp(300px, 26vw, 400px); }
+.k3d-view {
+  position: relative; height: min(78vh, 860px); min-height: 520px; overflow: hidden;
+  background: radial-gradient(ellipse 60% 70% at 50% 45%, #131313 0%, #000 72%);
+  cursor: grab; touch-action: none; outline-offset: -2px;
+}
+.k3d-view.is-dragging { cursor: grabbing; }
+.k3d-view canvas { display: block; width: 100%; height: 100%; }
+.k3d-fallback { position: absolute; inset: 0; display: grid; place-items: center; padding: 40px; color: var(--muted); text-align: center; }
+.k3d-modes { position: absolute; top: 18px; left: 18px; display: flex; border: 1px solid var(--line); background: rgba(0, 0, 0, 0.6); }
+.k3d-mode {
+  min-height: 38px; padding: 0 18px; border: 0; background: none; cursor: pointer; color: var(--muted);
+  font: 600 0.75rem/1 var(--display); letter-spacing: 0.18em; text-transform: uppercase;
+}
+.k3d-mode + .k3d-mode { border-left: 1px solid var(--line); }
+.k3d-mode:hover { color: var(--ink); }
+.k3d-mode[aria-pressed="true"] { color: var(--deep); background: var(--gold); }
+.k3d-bar { position: absolute; left: 18px; right: 18px; bottom: 16px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px 24px; pointer-events: none; }
+.k3d-bar > * { pointer-events: auto; }
+.k3d-row { display: flex; align-items: center; gap: 12px; padding: 8px 12px; background: rgba(0, 0, 0, 0.6); border: 1px solid var(--line); }
+.k3d-end { color: var(--muted); font: 600 0.72rem/1 var(--display); letter-spacing: 0.18em; text-transform: uppercase; }
+.k3d-range { width: clamp(140px, 18vw, 260px); accent-color: var(--gold); }
+.k3d-count { min-width: 4.5ch; text-align: center; font: 600 0.9rem/1 var(--display); letter-spacing: 0.1em; color: var(--ink); }
+.k3d-row .btn.small:disabled { opacity: 0.35; cursor: default; }
+.k3d-row .btn.small:disabled:hover { background: none; color: var(--ink); }
+.k3d-hint { color: var(--muted); font-size: 0.8rem; text-shadow: 0 1px 2px #000; }
+.k3d-labels { position: absolute; inset: 0; pointer-events: none; opacity: 0; transition: opacity 0.25s; }
+.k3d-labels.is-on { opacity: 1; }
+.k3d-labels.is-on .k3d-label { pointer-events: auto; }
+.k3d-label {
+  position: absolute; left: 0; top: 0; white-space: nowrap; cursor: pointer;
+  padding: 4px 9px; border: 1px solid var(--line); background: rgba(0, 0, 0, 0.72); color: var(--muted);
+  font: 600 0.7rem/1.2 var(--display); letter-spacing: 0.14em; text-transform: uppercase;
+}
+.k3d-label:hover, .k3d-label.is-on { color: var(--gold); border-color: var(--gold); }
+.k3d-lead { position: absolute; left: 0; top: 0; height: 1px; background: rgba(201, 162, 75, 0.55); transform-origin: 0 0; }
+.k3d-panel { border-left: 1px solid var(--line); padding: 32px clamp(20px, 2vw, 32px); height: min(78vh, 860px); min-height: 520px; overflow-y: auto; }
+.k3d-panel h2 { font-size: clamp(1.4rem, 2vw, 1.8rem); }
+.k3d-sub { margin: 10px 0 0; color: var(--muted); font-size: 0.85rem; line-height: 1.45; }
+.k3d-text { margin: 16px 0 0; }
+.k3d-values { display: grid; grid-template-columns: max-content 1fr; gap: 8px 18px; margin: 20px 0 0; padding: 16px 0 0; border-top: 1px solid var(--line); font-size: 0.92rem; }
+.k3d-values dt { color: var(--muted); }
+.k3d-values dd { margin: 0; }
+.k3d-parts, .k3d-steps { list-style: none; margin: 26px 0 0; padding: 0; border-top: 1px solid var(--line); }
+.k3d-part, .k3d-step {
+  display: flex; align-items: baseline; gap: 14px; width: 100%; padding: 11px 0; border: 0; border-bottom: 1px solid var(--line);
+  background: none; cursor: pointer; text-align: left; color: var(--muted); font-size: 0.95rem;
+}
+.k3d-part:hover, .k3d-step:hover { color: var(--ink); }
+.k3d-part.is-on, .k3d-step.is-on { color: var(--gold); }
+.k3d-step-n { font: 600 0.78rem/1 var(--display); letter-spacing: 0.1em; color: var(--muted); min-width: 2ch; }
+.k3d-step.is-on .k3d-step-n { color: var(--gold); }
+@media (max-width: 900px) {
+  .k3d { grid-template-columns: 1fr; }
+  .k3d-view { height: 68vh; min-height: 420px; }
+  .k3d-panel { height: auto; min-height: 0; border-left: 0; border-top: 1px solid var(--line); }
+  .k3d-hint { display: none; }
+  .k3d-label { font-size: 0.6rem; padding: 3px 6px; letter-spacing: 0.1em; }
+}
+@media (prefers-reduced-motion: reduce) { .k3d-labels { transition: none; } }

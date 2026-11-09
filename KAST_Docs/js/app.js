@@ -90,7 +90,8 @@
 
   /* ---------- nav ---------- */
   function buildNav() {
-    const links = [el('a', { href: '#/station', 'data-key': 'station', text: 'Building Horizon Station' })];
+    const links = [el('a', { href: '#/station', 'data-key': 'station', text: 'Building Horizon Station' }),
+      el('a', { href: '#/kestrel', 'data-key': 'kestrel', text: 'The Kestrel' })];
     KAST.docs.filter(d => d.group !== 'station').forEach(d => links.push(el('a', { href: '#/doc/' + d.id, 'data-key': 'doc/' + d.id, text: d.navTitle || d.title })));
     links.push(el('a', { href: '#/logs', 'data-key': 'logs', text: 'Flight logs' }));
     links.push(el('a', { href: '#/telemetry', 'data-key': 'telemetry', text: 'Booster telemetry' }));
@@ -101,7 +102,7 @@
   function markNav() {
     const h = location.hash.replace(/^#\/?/, '').split('/');
     const inStation = h[0] === 'station' || (h[0] === 'doc' && KAST.docs.some(d => d.id === h[1] && d.group === 'station'));
-    const key = inStation ? 'station' : h[0] === 'log' ? 'logs' : h[0] === 'telemetry' ? 'telemetry' : h[0] === 'gallery' ? 'gallery' : h[0] === 'rnd' ? 'rnd' : h.slice(0, 2).join('/');
+    const key = inStation ? 'station' : h[0] === 'log' ? 'logs' : h[0] === 'telemetry' ? 'telemetry' : h[0] === 'gallery' ? 'gallery' : h[0] === 'rnd' ? 'rnd' : h[0] === 'kestrel' ? 'kestrel' : h.slice(0, 2).join('/');
     navlinks.querySelectorAll('a').forEach(a => {
       if (a.dataset.key === key) a.setAttribute('aria-current', 'page');
       else a.removeAttribute('aria-current');
@@ -131,6 +132,9 @@
       ]));
     const items = [];
     KAST.docs.forEach(d => items.push({ img: d.hero || 'assets/hero-orbit.jpg', kicker: d.kind + (d.status ? ', ' + d.status.toLowerCase() : ''), title: d.title, text: d.subtitle, href: '#/doc/' + d.id, cta: d.cta || 'Open' }));
+    items.push({ img: 'assets/hero-pad.jpg', kicker: 'Launch vehicle', title: 'The Kestrel in 3D',
+      text: 'Pull the LV-5 Kestrel apart part by part, or step through a flight from liftoff to the booster landing back on the pad.',
+      href: '#/kestrel', cta: 'Open the 3D model' });
     const runs = (KAST.telemetry && KAST.telemetry.runs) || [];
     const landed = runs.map(r => r.miss_final).filter(m => typeof m === 'number' && m < 2000);
     items.push({ img: 'assets/photo-f9rcs-descent.jpg', kicker: 'Booster telemetry', title: 'First stage return',
@@ -719,9 +723,48 @@
     ])], 'Building Horizon Station');
   }
 
+  /* ---------- the Kestrel in 3D (js/kestrel3d.js, loaded on demand with three.js) ---------- */
+  const scriptCache = {};
+  function loadScript(src) {
+    if (!scriptCache[src]) scriptCache[src] = new Promise((ok, fail) => {
+      const s = document.createElement('script');
+      s.src = src + (window.KAST_BUILD && window.KAST_BUILD !== '__BUILD__' ? '?v=' + window.KAST_BUILD : '');
+      s.onload = ok;
+      s.onerror = () => { delete scriptCache[src]; fail(new Error('could not load ' + src)); };
+      document.head.appendChild(s);
+    });
+    return scriptCache[src];
+  }
+  function renderKestrel() {
+    current = null;
+    const head = el('section', { class: 'section k3d-head' }, [
+      el('p', { class: 'kicker', text: 'Launch vehicle' }),
+      el('h1', { text: 'LV-5 Kestrel' }),
+      P('Two stages, and a booster that flies itself back to the launch pad. Pull it apart to see every part, or step through a flight from liftoff to landing.', 'lead')
+    ]);
+    const host = el('div', { class: 'k3d-host' }, el('div', { class: 'k3d-loading', text: 'Loading the 3D model\u2026' }));
+    const stat = (k, v, u) => el('div', { class: 'stat' }, [el('dt', { text: k }), el('dd', null, [v, u ? el('small', { text: u }) : null])]);
+    const specs = el('section', { class: 'section' }, [
+      el('div', { class: 'section-head' }, el('div', null, [el('p', { class: 'kicker', text: 'Specifications' }), el('h2', { text: 'By the numbers' })])),
+      el('dl', { class: 'stats' }, [
+        stat('Height', '32.6', 'm with Horizon Junction'),
+        stat('Diameter', '2.5', 'm'),
+        stat('Liftoff thrust', '2,070', 'kN, 9 engines'),
+        stat('Upper-stage thrust', '350', 'kN'),
+        stat('Fuel kept to fly home', '30', '%'),
+        stat('Booster recovery', 'RTLS', 'to the launch pad')
+      ])
+    ]);
+    setPage([head, host, specs], 'LV-5 Kestrel');
+    Promise.all([loadScript('js/vendor/three.min.js'), loadScript('js/kestrel3d.js')])
+      .then(() => { if (host.isConnected) window.KAST_K3D.mount(host); })
+      .catch(() => { host.replaceChildren(el('div', { class: 'empty', text: 'The 3D model could not be loaded. Reload the page to try again.' })); });
+  }
+
   /* ---------- router ---------- */
   function route() {
     closeDrawer(false);
+    if (window.KAST_K3D) window.KAST_K3D.unmount();
     const h = location.hash.replace(/^#\/?/, '').split('/');
     if (h[0] === 'doc' && h[1]) renderDoc(h[1], h[2]);
     else if (h[0] === 'station') renderStation(h[1]);
@@ -730,6 +773,7 @@
     else if (h[0] === 'telemetry') renderTelemetry(h[1]);
     else if (h[0] === 'gallery') renderGallery();
     else if (h[0] === 'rnd') renderRnd(h[1]);
+    else if (h[0] === 'kestrel') renderKestrel();
     else renderHome();
   }
   function start() {
