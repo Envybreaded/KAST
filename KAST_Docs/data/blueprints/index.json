@@ -1,0 +1,35 @@
+{
+ "v": 1,
+ "crafts": [
+  {
+   "slug": "junction",
+   "name": "KAST Horizon Junction on Kestrel - F9 RCS - RX-55 control",
+   "parts": 85,
+   "bytes": 1096216
+  },
+  {
+   "slug": "harrier",
+   "name": "KAST LV-2 Harrier (Atlas V 421) - launcher only",
+   "parts": 20,
+   "bytes": 879684
+  },
+  {
+   "slug": "condor",
+   "name": "KAST LV-3 Condor (Titan III) - launcher only",
+   "parts": 15,
+   "bytes": 768656
+  },
+  {
+   "slug": "roc",
+   "name": "KAST LV-4 Roc (Atlas V Heavy) - launcher only",
+   "parts": 27,
+   "bytes": 922784
+  },
+  {
+   "slug": "station",
+   "name": "KAST Horizon Station - complete (ISS-style reference)",
+   "parts": 193,
+   "bytes": 2723868
+  }
+ ]
+}

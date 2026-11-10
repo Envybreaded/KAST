@@ -91,7 +91,8 @@
   /* ---------- nav ---------- */
   function buildNav() {
     const links = [el('a', { href: '#/station', 'data-key': 'station', text: 'Building Horizon Station' }),
-      el('a', { href: '#/kestrel', 'data-key': 'kestrel', text: 'The Kestrel' })];
+      el('a', { href: '#/kestrel', 'data-key': 'kestrel', text: 'The Kestrel' }),
+      el('a', { href: '#/blueprints', 'data-key': 'blueprints', text: 'Blueprints' })];
     KAST.docs.filter(d => d.group !== 'station').forEach(d => links.push(el('a', { href: '#/doc/' + d.id, 'data-key': 'doc/' + d.id, text: d.navTitle || d.title })));
     links.push(el('a', { href: '#/logs', 'data-key': 'logs', text: 'Flight logs' }));
     links.push(el('a', { href: '#/telemetry', 'data-key': 'telemetry', text: 'Booster telemetry' }));
@@ -102,7 +103,7 @@
   function markNav() {
     const h = location.hash.replace(/^#\/?/, '').split('/');
     const inStation = h[0] === 'station' || (h[0] === 'doc' && KAST.docs.some(d => d.id === h[1] && d.group === 'station'));
-    const key = inStation ? 'station' : h[0] === 'log' ? 'logs' : h[0] === 'telemetry' ? 'telemetry' : h[0] === 'gallery' ? 'gallery' : h[0] === 'rnd' ? 'rnd' : h[0] === 'kestrel' ? 'kestrel' : h.slice(0, 2).join('/');
+    const key = inStation ? 'station' : h[0] === 'log' ? 'logs' : h[0] === 'telemetry' ? 'telemetry' : h[0] === 'gallery' ? 'gallery' : h[0] === 'rnd' ? 'rnd' : h[0] === 'kestrel' ? 'kestrel' : h[0] === 'blueprints' ? 'blueprints' : h.slice(0, 2).join('/');
     navlinks.querySelectorAll('a').forEach(a => {
       if (a.dataset.key === key) a.setAttribute('aria-current', 'page');
       else a.removeAttribute('aria-current');
@@ -135,6 +136,9 @@
     items.push({ img: 'assets/hero-pad.jpg', kicker: 'Launch vehicle', title: 'The Kestrel in 3D',
       text: 'Pull the LV-5 Kestrel apart part by part, or step through a flight from liftoff to the booster landing back on the pad.',
       href: '#/kestrel', cta: 'Open the 3D model' });
+    items.push({ img: 'assets/blueprint-station.jpg', kicker: 'Engineering', title: 'Blueprints',
+      text: 'Line drawings of our launchers and Horizon Station, made from the real part models in the game files. Turn them, slide the stages apart, tap any part.',
+      href: '#/blueprints', cta: 'Open the blueprints' });
     const runs = (KAST.telemetry && KAST.telemetry.runs) || [];
     const landed = runs.map(r => r.miss_final).filter(m => typeof m === 'number' && m < 2000);
     items.push({ img: 'assets/photo-f9rcs-descent.jpg', kicker: 'Booster telemetry', title: 'First stage return',
@@ -761,10 +765,45 @@
       .catch(() => { host.replaceChildren(el('div', { class: 'empty', text: 'The 3D model could not be loaded. Reload the page to try again.' })); });
   }
 
+  /* ---------- blueprints (js/blueprint.js): hidden-line drawings from the game's own part models ---------- */
+  const BLUEPRINTS = [
+    { slug: 'junction', title: 'LV-5 Kestrel', sub: 'with Horizon Junction',
+      blurb: 'The Kestrel launcher carrying the Horizon Junction module under its fairing. Switch the fairing off to see the Junction, or slide the stages apart.',
+      link: { href: '#/kestrel', text: 'Step through a Kestrel flight' } },
+    { slug: 'harrier', title: 'LV-2 Harrier', sub: 'Atlas V 421 class',
+      blurb: 'Common core on an RD-180, two strap-on solids and a single-engine upper stage.' },
+    { slug: 'condor', title: 'LV-3 Condor', sub: 'Titan III class',
+      blurb: 'A two-stage storable-propellant core flanked by two segmented solid boosters.' },
+    { slug: 'roc', title: 'LV-4 Roc', sub: 'Atlas V Heavy class',
+      blurb: 'Three common cores side by side. The outer pair separate first, the centre core flies on.' },
+    { slug: 'station', title: 'Horizon Station', sub: 'Complete reference build',
+      blurb: 'The whole station as designed: modules, nodes, trusses and arrays. Slide Separate to spread it out part by part.' }
+  ];
+  function renderBlueprints(slug) {
+    current = null;
+    const head = el('section', { class: 'section bp-head' }, [
+      el('p', { class: 'kicker', text: 'Engineering' }),
+      el('h1', { text: 'Blueprints' }),
+      P('Every line comes from the real part models in our game files, placed exactly where the craft file puts them. Turn a craft, zoom in, and tap any part to name it.', 'lead')
+    ]);
+    const host = el('div', { class: 'bp-host' }, el('div', { class: 'k3d-loading', text: 'Loading the blueprints\u2026' }));
+    setPage([head, host], 'Blueprints');
+    Promise.all([loadScript('js/vendor/three.min.js'), loadScript('js/blueprint.js')])
+      .then(() => {
+        if (!host.isConnected) return;
+        window.KAST_BP.mount(host, { crafts: BLUEPRINTS, slug, onSlug: s => {
+          const want = '#/blueprints/' + s;
+          if (location.hash !== want) history.replaceState(null, '', want);
+        } });
+      })
+      .catch(() => { host.replaceChildren(el('div', { class: 'empty', text: 'The blueprints could not be loaded. Reload the page to try again.' })); });
+  }
+
   /* ---------- router ---------- */
   function route() {
     closeDrawer(false);
     if (window.KAST_K3D) window.KAST_K3D.unmount();
+    if (window.KAST_BP) window.KAST_BP.unmount();
     const h = location.hash.replace(/^#\/?/, '').split('/');
     if (h[0] === 'doc' && h[1]) renderDoc(h[1], h[2]);
     else if (h[0] === 'station') renderStation(h[1]);
@@ -774,6 +813,7 @@
     else if (h[0] === 'gallery') renderGallery();
     else if (h[0] === 'rnd') renderRnd(h[1]);
     else if (h[0] === 'kestrel') renderKestrel();
+    else if (h[0] === 'blueprints') renderBlueprints(h[1]);
     else renderHome();
   }
   function start() {
